@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Clazz">
+
+<title>Parity and AD specific neurodegeneration</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="ad_signatures_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ad_signatures_files/libs/quarto-html/quarto.js"></script>
+<script src="ad_signatures_files/libs/quarto-html/popper.min.js"></script>
+<script src="ad_signatures_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="ad_signatures_files/libs/quarto-html/anchor.min.js"></script>
+<link href="ad_signatures_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ad_signatures_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="ad_signatures_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="ad_signatures_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="ad_signatures_files/libs/bootstrap/bootstrap-8a79a254b8e706d3c925cde0a310d4f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract"><span class="header-section-number">1</span> Abstract</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">2</span> Introduction</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">3</span> Methods</a>
+  <ul class="collapse">
+  <li><a href="#study-population" id="toc-study-population" class="nav-link" data-scroll-target="#study-population"><span class="header-section-number">3.1</span> Study population</a></li>
+  <li><a href="#reproductive-variables" id="toc-reproductive-variables" class="nav-link" data-scroll-target="#reproductive-variables"><span class="header-section-number">3.2</span> Reproductive variables</a></li>
+  <li><a href="#cognitive-measures" id="toc-cognitive-measures" class="nav-link" data-scroll-target="#cognitive-measures"><span class="header-section-number">3.3</span> Cognitive measures</a></li>
+  <li><a href="#ad-biomarkers" id="toc-ad-biomarkers" class="nav-link" data-scroll-target="#ad-biomarkers"><span class="header-section-number">3.4</span> AD biomarkers</a></li>
+  <li><a href="#imaging-data-acquisition-and-preprocessing" id="toc-imaging-data-acquisition-and-preprocessing" class="nav-link" data-scroll-target="#imaging-data-acquisition-and-preprocessing"><span class="header-section-number">3.5</span> Imaging data acquisition and preprocessing</a></li>
+  <li><a href="#covariates" id="toc-covariates" class="nav-link" data-scroll-target="#covariates"><span class="header-section-number">3.6</span> Covariates</a></li>
+  <li><a href="#statistical-analyses" id="toc-statistical-analyses" class="nav-link" data-scroll-target="#statistical-analyses"><span class="header-section-number">3.7</span> Statistical analyses</a></li>
+  <li><a href="#sensitivity-analyses" id="toc-sensitivity-analyses" class="nav-link" data-scroll-target="#sensitivity-analyses"><span class="header-section-number">3.8</span> Sensitivity analyses</a></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">4</span> Results</a>
+  <ul class="collapse">
+  <li><a href="#descriptive-results" id="toc-descriptive-results" class="nav-link" data-scroll-target="#descriptive-results"><span class="header-section-number">4.1</span> Descriptive results</a></li>
+  <li><a href="#effect-of-previous-parity-on-amyloid-status" id="toc-effect-of-previous-parity-on-amyloid-status" class="nav-link" data-scroll-target="#effect-of-previous-parity-on-amyloid-status"><span class="header-section-number">4.2</span> Effect of previous parity on amyloid status</a></li>
+  <li><a href="#association-between-parity-and-amyloid-status-on-cognition" id="toc-association-between-parity-and-amyloid-status-on-cognition" class="nav-link" data-scroll-target="#association-between-parity-and-amyloid-status-on-cognition"><span class="header-section-number">4.3</span> Association between parity and amyloid status on cognition</a></li>
+  <li><a href="#association-between-parity-and-amyloid-status-on-cognitive-trajectory" id="toc-association-between-parity-and-amyloid-status-on-cognitive-trajectory" class="nav-link" data-scroll-target="#association-between-parity-and-amyloid-status-on-cognitive-trajectory"><span class="header-section-number">4.4</span> Association between parity and amyloid status on cognitive trajectory</a></li>
+  <li><a href="#cross-sectional-association-between-pregnancy-and-amyloid-status-in-hippocampal-volume" id="toc-cross-sectional-association-between-pregnancy-and-amyloid-status-in-hippocampal-volume" class="nav-link" data-scroll-target="#cross-sectional-association-between-pregnancy-and-amyloid-status-in-hippocampal-volume"><span class="header-section-number">4.5</span> Cross-sectional association between pregnancy and amyloid status in Hippocampal volume</a></li>
+  <li><a href="#longitudinal-association-between-parity-and-hipoccampal-volume-change" id="toc-longitudinal-association-between-parity-and-hipoccampal-volume-change" class="nav-link" data-scroll-target="#longitudinal-association-between-parity-and-hipoccampal-volume-change"><span class="header-section-number">4.6</span> Longitudinal association between parity and hipoccampal volume change</a></li>
+  <li><a href="#post-hoc-analysis" id="toc-post-hoc-analysis" class="nav-link" data-scroll-target="#post-hoc-analysis"><span class="header-section-number">4.7</span> Post Hoc analysis</a></li>
+  </ul></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">5</span> Discussion</a></li>
+  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix"><span class="header-section-number">6</span> Appendix</a>
+  <ul class="collapse">
+  <li><a href="#mri-data-acquisition" id="toc-mri-data-acquisition" class="nav-link" data-scroll-target="#mri-data-acquisition"><span class="header-section-number">6.1</span> MRI data acquisition</a></li>
+  <li><a href="#hippocampal-subfields" id="toc-hippocampal-subfields" class="nav-link" data-scroll-target="#hippocampal-subfields"><span class="header-section-number">6.2</span> Hippocampal subfields</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7</span> References</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Parity and AD specific neurodegeneration</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Clazz </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="abstract" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Abstract</h1>
+<p>300 words</p>
+</section>
+<section id="introduction" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Introduction</h1>
+<p>Alzheimer’s disease (AD) is a neurodegenerative disorder clinically characterized by progressive memory loss. Amyloid protein accumulation, a hallmark clinical marker of AD, is thought to trigger an inflammatory cascade, leading to further accumulation of tau protein, neurodegeneration, and cognitive impairment. Being biologically female is one of the main non-modifiable risk factors for AD <span class="citation" data-cites="riedel2016">[<a href="#ref-riedel2016" role="doc-biblioref">1</a>]</span>. Females who develop AD show a worse cognitive trajectory after mild cognitive impairment (MCI) diagnosis <span class="citation" data-cites="holland2013">[<a href="#ref-holland2013" role="doc-biblioref">2</a>]</span>, faster atrophy rate in the hippocampus <span class="citation" data-cites="ardekani2016">[<a href="#ref-ardekani2016" role="doc-biblioref">3</a>]</span>, and may benefit less from amyloid-antibody based therapies <span class="citation" data-cites="andrews2025">[<a href="#ref-andrews2025" role="doc-biblioref">4</a>]</span>. These differences in pathology suggest that sex-dependent pathways or biological processes may drive distinct pathological trajectories. In particular, pregnancy is a female specific event that remains poorly understood, and its consequences on ageing even more so.</p>
+<p>The effect of parity on brain ageing and cognitive trajectory remains relatively unknown, and available evidence paints a complex picture. Epidemiological studies exploring a potential association between parity and AD show a potential link between grand multiparity and dementia <span class="citation" data-cites="Colucci2006">[<a href="#ref-Colucci2006" role="doc-biblioref">5</a>]</span>; <span class="citation" data-cites="bae2020">[<a href="#ref-bae2020" role="doc-biblioref">6</a>]</span>. Recent evidence indicates that parity modulates women’s cognitive performance differently depending on their disease status. Specifically, a recent study using cross-sectional data from 456 female participants with dementia showed that higher parity was associated with enhanced executive function but reduced episodic memory [Lee et al., 2025]. Notably, this pattern was not observed in cognitively normal women.</p>
+<p>However, these studies did not include AD-specific biomarkers, meaning they were limited to studying advanced dementia cases and lacked specificity of disease trajectory. To our knowledge, only two studies with mixed results have included AD biomarkers as dependent variables. A post-mortem histopathological study found that multiparity was associated with more neuritic plaques <span class="citation" data-cites="Beeri2009a">[<a href="#ref-Beeri2009a" role="doc-biblioref">7</a>]</span>. However, analysis using PET amyloid data from an observational cohort found no association between amyloid burden and parity or multiparity <span class="citation" data-cites="jung2020">[<a href="#ref-jung2020" role="doc-biblioref">8</a>]</span>. These results highlight the need for further examination of the link between parity and AD biomarker levels in women in the AD preclinical stage to disentangle mechanisms that might take place in early stages of neuropathological progression. This will enable us to identify women at risk and move towards more personalized preventive interventions.</p>
+<p>The hippocampus is one of the first regions affected by AD, and whole hippocampal volume is a hallmark predictor of conversion from MCI to AD <span class="citation" data-cites="apostolova2006">[<a href="#ref-apostolova2006" role="doc-biblioref">9</a>]</span>. Importantly, pregnancy provokes significant changes to hippocampal structure and volume <span class="citation" data-cites="puri2023">[<a href="#ref-puri2023" role="doc-biblioref">10</a>]</span>. Animal models show decreased neurogenesis in the hippocampus during gestation and the postpartum period <span class="citation" data-cites="pawluski2007 eid2019">[<a href="#ref-pawluski2007" role="doc-biblioref">11</a>,<a href="#ref-eid2019" role="doc-biblioref">12</a>]</span>. In humans, pregnancy is associated with hippocampal volume (HV) loss that persists for at least 6 years post-partum <span class="citation" data-cites="martínez-garcía2021">[<a href="#ref-martínez-garcía2021" role="doc-biblioref">13</a>]</span>. Importantly, the hippocampus is one of the first regions affected by AD, and HV is a hallmark predictor of conversion from MCI to AD <span class="citation" data-cites="apostolova2006">[<a href="#ref-apostolova2006" role="doc-biblioref">9</a>]</span>. Altered neurogenesis is linked to AD-related neuropathology and cognitive impairments <span class="citation" data-cites="hollands2017">[<a href="#ref-hollands2017" role="doc-biblioref">14</a>]</span>. Aß pathology can affect hippocampal neurodegeneration in the early stages of the AD continuum <span class="citation" data-cites="cacciaglia2025">[<a href="#ref-cacciaglia2025" role="doc-biblioref">15</a>]</span>. Therefore, parity-induced alterations to hippocampal structure may create a distinct neurobiological landscape that either increases vulnerability to, or modifies the progression of, AD-related degeneration.</p>
+<p>We investigated the association between previous parity and amyloid load, and their combined effect on cognition and HV in postmenopausal CU women genetically enriched for the AD phenotype. We aimed to determine whether parity’s effect on HV persists in postmenopausal women and whether this interacts with AD-related neuropathology. We hypothesized that parity would interact with amyloid load such that women with low amyloid burden would exhibit higher HV and better cognitive performance with increasing parity. In contrast, the opposite pattern would be observed in amyloid-positive women.</p>
+</section>
+<section id="methods" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Methods</h1>
+<section id="study-population" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="study-population"><span class="header-section-number">3.1</span> Study population</h2>
+<p>This observational cohort study includes postmenopausal women from the ongoing ALFA+ study (Clinicaltrials.gov, NCT01835717) who completed at least the baseline visit. The second visit was included as well when data was available (average time between visits of 3.32 years). ALFA+ is a research cohort of middle-aged cognitively unimpaired participants, many of whom are offspring of AD patients, based in Barcelona, Spain. Participants undergo an extensive battery of tests, questionnaires and measurements every 3 years with the main aim of identifying the earliest pathophysiological changes in the preclinical AD continuum. The study was approved by the Independent Ethics Committee “Parc de Salut Mar”, Barcelona, and all participants gave written informed consent. Baseline visits took place between 2016 and 2019 and the follow-up visit between 2019 and 2022.</p>
+<p>In brief, inclusion criteria were: 1) participants who had previously participated in the 45-65/FPM2012 study (ALFA parent cohort); 2) age between 45 and 75 years at the moment of the inclusion in the cohort; 3) long-term commitment to to undergo all tests and study procedures (MRI, PET, and lumbar puncture). Exclusion criteria included: 1) cognitive impairment (Clinical Dementia Rating [CDR] &gt; 0, Mini-Mental State Examination [MMSE] &lt; 27, semantic fluency &lt; 12); 2) any significant systemic illness or unstable medical condition which could lead to difficulty complying with the protocol; 3) any contraindication to any test or procedure; 4) family history of monogenic AD. In addition, women with a history of cardiovascular-related gestational disease, such as preeclampsia, were excluded from our sample for analysis.</p>
+</section>
+<section id="reproductive-variables" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="reproductive-variables"><span class="header-section-number">3.2</span> Reproductive variables</h2>
+<p>Parity was defined as the number of biological children and used as a continuous variable in our main analyses. This information was self-reported by individuals during an interview with a clinician at baseline visit.</p>
+</section>
+<section id="cognitive-measures" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="cognitive-measures"><span class="header-section-number">3.3</span> Cognitive measures</h2>
+<p>Preclinical Alzheimer’s cognitive composite (PACC) was computed including the Total Paired Recall (TPR) and Total Delayed Free Recall scores of the Memory Binding Test <span class="citation" data-cites="buschke2017">[<a href="#ref-buschke2017" role="doc-biblioref">16</a>]</span>, the Coding subtest of the Wechsler Adult Intelligence Scale-Fourth Edition (WAIS-IV), and semantic fluency, as defined in previous works <span class="citation" data-cites="mormino2017">[<a href="#ref-mormino2017" role="doc-biblioref">17</a>]</span>. Z-scores were computed for Visit 1 and 2.</p>
+</section>
+<section id="ad-biomarkers" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="ad-biomarkers"><span class="header-section-number">3.4</span> AD biomarkers</h2>
+<p>CSF collection, processing, and storage in the ALFA+ study have been described previously <span class="citation" data-cites="Milà-Alomà2020">[<a href="#ref-Milà-Alomà2020" role="doc-biblioref">18</a>]</span>. CSF A42 and A40 were measured with the exploratory Roche NeuroToolKit immunoassays (Roche Diagnostics International Ltd, Rotkreuz, Switzerland) on a cobas e 601 module. Measurements were performed at the Clinical Neurochemistry Laboratory, Sahlgrenska University Hospital, Molndal, Sweden. Aß status (Aß+, Aß–) was defined using the cutoff of 0.071 for the ratio Aß42/40 <span class="citation" data-cites="Milà-Alomà2020">[<a href="#ref-Milà-Alomà2020" role="doc-biblioref">18</a>]</span>, where any participant below this cutoff was considered to be Aß+.</p>
+</section>
+<section id="imaging-data-acquisition-and-preprocessing" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="imaging-data-acquisition-and-preprocessing"><span class="header-section-number">3.5</span> Imaging data acquisition and preprocessing</h2>
+<p>Automatic Segmentation of Hippocampal Subfields (ASHS) software <span class="citation" data-cites="Yushkevich2015">[<a href="#ref-Yushkevich2015" role="doc-biblioref">19</a>]</span> was used on the T1, T2 and inversion recovery (IR) images to segment the hippocampal formation in the following sub-regions: Brodmann areas 35 and 36, cornu Ammonis (CA) 1, 2 and 3, dentate gyrus (DG), entorhinal cortex (ERC), parahippocampus (PHC), subiculum (SUB), and sulcus (SUL). All segmentations were visually inspected before proceeding with the statistical analyses.&nbsp;</p>
+<p>Hippocampal values are reported in mm3. Values were collected at baseline and follow-up visit.&nbsp;</p>
+</section>
+<section id="covariates" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="covariates"><span class="header-section-number">3.6</span> Covariates</h2>
+<p>HV analyses were adjusted by total intracranial volume, <em>APOE</em> carriership (dichotomous - carrier or non-carrier of the Apolipoprotein 4), years of education (continuous) and age at baseline visit (continuous). Cognitive analyses were adjusted for <em>APOE</em> carriership, years of education and age at baseline visit. All analyse estimates, standard errors and p values are reported adjusted for these covariates.</p>
+</section>
+<section id="statistical-analyses" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="statistical-analyses"><span class="header-section-number">3.7</span> Statistical analyses</h2>
+<p>Analyses were conducted using R version 4.5.1.&nbsp;</p>
+<p>Normality of residuals was checked in all linear models using the base R plot() function on model output. Collinearity was also checked for all models using the vif() function of the car package (v.3.1.3).</p>
+<p>We first conducted simple linear regressions to examine the cross sectional effect of previous parity (exposure) on Aß load (outcome). We then conducted simple linear regressions to examine cross-sectional associations between parity and Aβ positivity (exposures) on hippocampal volume and PACC score (outcomes) using baseline visit data.&nbsp;Following this, mixed-effects linear models were used to assess longitudinal effects of parity and Aβ positivity (exposures) on hippocampal volume and cognitive change (outcomes) using baseline and follow-up visit data. These models included a three-way interaction term between parity, Aβ positivity, and time (interval between Visit 1 and Visit 2).</p>
+<p>All models used a p-value threshold of p &lt; 0.05.&nbsp;</p>
+<p>Data imputation methods were implemented using the mice package in R (v.3.18.0) on covariates, but not exposure or outcome variables. For continuous variables, predictive mean matching with 5 donors was used. For categorical variables, logistic regression was used.</p>
+</section>
+<section id="sensitivity-analyses" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="sensitivity-analyses"><span class="header-section-number">3.8</span> Sensitivity analyses</h2>
+<p>Analyses that showed a significant effect of parity on the outcome were reproduced using parity as a categorical variable to examine potential non-linear effects. The variable was defined as follows: nulliparous (0 childbirth), primiparous (1 childbirth) and multiparous (2+ childbirths). Because these analyses were underpowered for this group interaction, we also provide group comparison using estimated marginal means to examine specific parity group differences depending on Aβ load.</p>
+<p>Additional linear regressions were also performed to explore the interaction between parity and Aβ positivity on individual hippocampal subfield volumes using baseline data. These analyses can be found in the supplemental materials. Given the exploratory nature of these analyses, results are reported without correction for multiple comparisons.</p>
+</section>
+</section>
+<section id="results" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Results</h1>
+<section id="descriptive-results" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="descriptive-results"><span class="header-section-number">4.1</span> Descriptive results</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div id="jensybybbs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jensybybbs table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#jensybybbs thead, #jensybybbs tbody, #jensybybbs tfoot, #jensybybbs tr, #jensybybbs td, #jensybybbs th {
+  border-style: none;
+}
+
+#jensybybbs p {
+  margin: 0;
+  padding: 0;
+}
+
+#jensybybbs .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#jensybybbs .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#jensybybbs .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#jensybybbs .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#jensybybbs .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jensybybbs .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jensybybbs .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jensybybbs .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#jensybybbs .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#jensybybbs .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#jensybybbs .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#jensybybbs .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#jensybybbs .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#jensybybbs .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#jensybybbs .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jensybybbs .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#jensybybbs .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#jensybybbs .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#jensybybbs .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jensybybbs .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#jensybybbs .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#jensybybbs .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#jensybybbs .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jensybybbs .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#jensybybbs .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#jensybybbs .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jensybybbs .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jensybybbs .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#jensybybbs .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jensybybbs .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#jensybybbs .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jensybybbs .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jensybybbs .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jensybybbs .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jensybybbs .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jensybybbs .gt_left {
+  text-align: left;
+}
+
+#jensybybbs .gt_center {
+  text-align: center;
+}
+
+#jensybybbs .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#jensybybbs .gt_font_normal {
+  font-weight: normal;
+}
+
+#jensybybbs .gt_font_bold {
+  font-weight: bold;
+}
+
+#jensybybbs .gt_font_italic {
+  font-style: italic;
+}
+
+#jensybybbs .gt_super {
+  font-size: 65%;
+}
+
+#jensybybbs .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#jensybybbs .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#jensybybbs .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#jensybybbs .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#jensybybbs .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#jensybybbs .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#jensybybbs .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#jensybybbs .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#jensybybbs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings header">
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Variables</strong></th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>N</strong></th>
+<th id="stat_1" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>0</strong><br>
+N = 39<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="stat_2" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>1</strong><br>
+N = 54<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="stat_3" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>2</strong><br>
+N = 126<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="stat_4" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>3</strong><br>
+N = 27<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="stat_5" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>4+</strong><br>
+N = 8<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>p-value</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Age at first visit, Mean (SD)</td>
+<td class="gt_row gt_center" headers="n">254</td>
+<td class="gt_row gt_center" headers="stat_1">58.6 (55.3, 62.3)</td>
+<td class="gt_row gt_center" headers="stat_2">59.9 (56.7, 63.7)</td>
+<td class="gt_row gt_center" headers="stat_3">62.6 (58.4, 65.1)</td>
+<td class="gt_row gt_center" headers="stat_4">61.2 (58.1, 64.8)</td>
+<td class="gt_row gt_center" headers="stat_5">66.2 (61.5, 68.6)</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Aβ status, Count (%)</td>
+<td class="gt_row gt_center" headers="n">229</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_3"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_4"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_5"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value">0.8</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Aβ-</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_1">23 (70%)</td>
+<td class="gt_row gt_center" headers="stat_2">34 (69%)</td>
+<td class="gt_row gt_center" headers="stat_3">72 (64%)</td>
+<td class="gt_row gt_center" headers="stat_4">19 (70%)</td>
+<td class="gt_row gt_center" headers="stat_5">4 (50%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Aβ+</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_1">10 (30%)</td>
+<td class="gt_row gt_center" headers="stat_2">15 (31%)</td>
+<td class="gt_row gt_center" headers="stat_3">40 (36%)</td>
+<td class="gt_row gt_center" headers="stat_4">8 (30%)</td>
+<td class="gt_row gt_center" headers="stat_5">4 (50%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">APOE-E4 carrier, Count (%)</td>
+<td class="gt_row gt_center" headers="n">254</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_3"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_4"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_5"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value">0.4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Carrier</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_1">19 (49%)</td>
+<td class="gt_row gt_center" headers="stat_2">23 (43%)</td>
+<td class="gt_row gt_center" headers="stat_3">72 (57%)</td>
+<td class="gt_row gt_center" headers="stat_4">13 (48%)</td>
+<td class="gt_row gt_center" headers="stat_5">3 (38%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Non-Carrier</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_1">20 (51%)</td>
+<td class="gt_row gt_center" headers="stat_2">31 (57%)</td>
+<td class="gt_row gt_center" headers="stat_3">54 (43%)</td>
+<td class="gt_row gt_center" headers="stat_4">14 (52%)</td>
+<td class="gt_row gt_center" headers="stat_5">5 (63%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Education (years), Mean (SD)</td>
+<td class="gt_row gt_center" headers="n">254</td>
+<td class="gt_row gt_center" headers="stat_1">17.0 (12.0, 18.0)</td>
+<td class="gt_row gt_center" headers="stat_2">12.0 (10.0, 15.0)</td>
+<td class="gt_row gt_center" headers="stat_3">12.0 (10.0, 16.0)</td>
+<td class="gt_row gt_center" headers="stat_4">13.0 (10.0, 18.0)</td>
+<td class="gt_row gt_center" headers="stat_5">11.0 (8.0, 12.0)</td>
+<td class="gt_row gt_center" headers="p.value">0.013</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Baseline Total Intracranial Volume (cm3), Mean (SD)</td>
+<td class="gt_row gt_center" headers="n">221</td>
+<td class="gt_row gt_center" headers="stat_1">1,248,730 (1,192,260, 1,320,610)</td>
+<td class="gt_row gt_center" headers="stat_2">1,212,390 (1,158,220, 1,286,890)</td>
+<td class="gt_row gt_center" headers="stat_3">1,251,265 (1,196,015, 1,321,960)</td>
+<td class="gt_row gt_center" headers="stat_4">1,266,360 (1,199,030, 1,294,720)</td>
+<td class="gt_row gt_center" headers="stat_5">1,234,990 (1,200,440, 1,320,140)</td>
+<td class="gt_row gt_center" headers="p.value">0.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Baseline Hippocampal volume, Mean (SD)</td>
+<td class="gt_row gt_center" headers="n">221</td>
+<td class="gt_row gt_center" headers="stat_1">5,347 (5,024, 5,675)</td>
+<td class="gt_row gt_center" headers="stat_2">5,249 (4,890, 5,629)</td>
+<td class="gt_row gt_center" headers="stat_3">5,325 (5,009, 5,771)</td>
+<td class="gt_row gt_center" headers="stat_4">5,433 (5,033, 5,846)</td>
+<td class="gt_row gt_center" headers="stat_5">5,007 (4,733, 5,413)</td>
+<td class="gt_row gt_center" headers="p.value">0.4</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Follow-up Hippocampal volume, Mean (SD)</td>
+<td class="gt_row gt_center" headers="n">203</td>
+<td class="gt_row gt_center" headers="stat_1">5,259 (4,864, 5,493)</td>
+<td class="gt_row gt_center" headers="stat_2">5,160 (4,803, 5,440)</td>
+<td class="gt_row gt_center" headers="stat_3">5,239 (4,889, 5,587)</td>
+<td class="gt_row gt_center" headers="stat_4">5,196 (4,756, 5,694)</td>
+<td class="gt_row gt_center" headers="stat_5">4,980 (4,849, 5,223)</td>
+<td class="gt_row gt_center" headers="p.value">0.7</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Baseline PACC z-score, Mean (SD)</td>
+<td class="gt_row gt_center" headers="n">234</td>
+<td class="gt_row gt_center" headers="stat_1">0.31 (-0.34, 0.69)</td>
+<td class="gt_row gt_center" headers="stat_2">0.05 (-0.51, 0.47)</td>
+<td class="gt_row gt_center" headers="stat_3">-0.11 (-0.56, 0.33)</td>
+<td class="gt_row gt_center" headers="stat_4">0.27 (-0.52, 0.76)</td>
+<td class="gt_row gt_center" headers="stat_5">0.07 (-0.55, 0.57)</td>
+<td class="gt_row gt_center" headers="p.value">0.2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Follow-up PACC z-score, Mean (SD)</td>
+<td class="gt_row gt_center" headers="n">203</td>
+<td class="gt_row gt_center" headers="stat_1">0.21 (0.01, 0.62)</td>
+<td class="gt_row gt_center" headers="stat_2">0.06 (-0.46, 0.55)</td>
+<td class="gt_row gt_center" headers="stat_3">-0.01 (-0.41, 0.42)</td>
+<td class="gt_row gt_center" headers="stat_4">0.43 (-0.25, 0.71)</td>
+<td class="gt_row gt_center" headers="stat_5">-0.73 (-1.21, 0.41)</td>
+<td class="gt_row gt_center" headers="p.value">0.050</td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="odd">
+<td colspan="8" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> Median (Q1, Q3); n (%)</td>
+</tr>
+<tr class="even">
+<td colspan="8" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span> Kruskal-Wallis rank sum test; Fisher’s exact test</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<p>254 female participants from the ALFA+ project were included in our analyses at Visit 1, and 211 at visit 2. Out of the 43 participants who dropped out of the study between both visits, 30 oficially withdrew for personal reasons, 3 became unresponsive, 2 died, 5 showed accidental findings on their structural MRI and 3 showed altered cognitive states. Visit 1 included MRI data from 241 participants and cognitive testing from 234 participants. Visit 2 included MRI data from 203 participants and cognitive testing from 203 participants. Average time between visits was 3.32 years.</p>
+<p>15.35% of our participants have no previous childbirths, 21.25% have 1, 49.6 have 2, 10.6 have 3 and 3.14 have 4 or more. Participants with higher parity were significantly older. No difference was observed between groups regarding Aβ status and APOE-ε4 carrier status (Table 1).</p>
+</section>
+<section id="effect-of-previous-parity-on-amyloid-status" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="effect-of-previous-parity-on-amyloid-status"><span class="header-section-number">4.2</span> Effect of previous parity on amyloid status</h2>
+<p>No main effect of parity was found on amyloid load when looking at baseline data (β = -0.108, SE = 0.174, p=0.535).</p>
+</section>
+<section id="association-between-parity-and-amyloid-status-on-cognition" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="association-between-parity-and-amyloid-status-on-cognition"><span class="header-section-number">4.3</span> Association between parity and amyloid status on cognition</h2>
+<p>No main effect of parity (β = 0.036, SE = 0.057, p=0.53) or interaction between parity and Aß status (β = -0.022, SE = 0.093, p=0.812) was found on PACC when looking only at baseline data .</p>
+</section>
+<section id="association-between-parity-and-amyloid-status-on-cognitive-trajectory" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="association-between-parity-and-amyloid-status-on-cognitive-trajectory"><span class="header-section-number">4.4</span> Association between parity and amyloid status on cognitive trajectory</h2>
+<p>In the context of longitudinal data, introducing a 3-way interaction between parity, time and Aß positivity revealed a moderate yet significant effect on PACC z-score change (β = -9.636^{-5}, SE = 4.497^{-5}, p=0.033). Results suggest that Aß- women showed less cognitive decline with a higher number of children, while Aβ+ women the opposite (Figure X).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ad_signatures_files/figure-html/cog_plot_all-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Reproducing the analysis using our 3 parity groups showed that the direction of the interaction was present in both primiparous and multiparous groups (Figure X). While the group interaction did not show yield any significant estimate, direct gorup comparison using estimated marginal means on predicted values indicated that the significant different slope between Aβ- and Aβ+ participants was present in multiparous women only (β=0.00016, SE=0.00006, p=0.009).</p>
+</section>
+<section id="cross-sectional-association-between-pregnancy-and-amyloid-status-in-hippocampal-volume" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="cross-sectional-association-between-pregnancy-and-amyloid-status-in-hippocampal-volume"><span class="header-section-number">4.5</span> Cross-sectional association between pregnancy and amyloid status in Hippocampal volume</h2>
+<p>No significant main effect of parity on HV was found cross-sectionally (β = 49.099, SE = 39.437, p = 0.215). However there was an interaction between parity and Aβ status (β = -137.633, SE = 65.347, p = 0.036), showing that Aβ- women exhibited a positive relationship between parity and hippocampal volume, whilst Aβ+ women showed the opposite (Figure X).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ad_signatures_files/figure-html/hippo_plot_all-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>When splitting women between nulliparous, primiparous and multiparous, the direction of the group interaction estimates indicated this interaction only took place in multiparous women, but no estimate showed significance (Figure x). Using estimated marginal effects for direct group comparison revealed that only multiparous women showed a difference in predicted HV depending on Aβ load (β= 242.9, SE=84.9, p=0.005).</p>
+</section>
+<section id="longitudinal-association-between-parity-and-hipoccampal-volume-change" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="longitudinal-association-between-parity-and-hipoccampal-volume-change"><span class="header-section-number">4.6</span> Longitudinal association between parity and hipoccampal volume change</h2>
+<p>Time did not moderate the previously found parity and Aβ status interaction (β = -30.222, SE = 17.608, p = 0.088) . The effect previously seen was maintained over both visits (β = -0.105, SE = 5.466, p = 0.985), suggesting that the observed relationship is does not show differences in the rate of hippocampal atrophy over time</p>
+</section>
+<section id="post-hoc-analysis" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="post-hoc-analysis"><span class="header-section-number">4.7</span> Post Hoc analysis</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>PACC_wide<span class="ot">&lt;-</span>cognition<span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(subject, Visit, Z_PACC, FechaResultado)<span class="sc">%&gt;%</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">values_from =</span> <span class="fu">c</span>(Z_PACC, FechaResultado), <span class="at">names_from =</span> Visit, <span class="at">names_prefix =</span> <span class="st">"V"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Z_PACC_diff =</span> Z_PACC_V2<span class="sc">-</span>Z_PACC_V1,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">FechaResultado_V1=</span> <span class="fu">as.Date</span>(FechaResultado_V1, <span class="at">format =</span> <span class="st">"%Y-%m-%d"</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">FechaResultado_V2=</span> <span class="fu">as.Date</span>(FechaResultado_V2, <span class="at">format =</span> <span class="st">"%Y-%m-%d"</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">cog_diff=</span> <span class="fu">as.numeric</span>(FechaResultado_V2<span class="sc">-</span>FechaResultado_V1)<span class="sc">/</span><span class="fl">365.25</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(subject, Z_PACC_diff, cog_diff, Z_PACC_V2, Z_PACC_V1)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>data_all<span class="ot">&lt;-</span>data<span class="sc">%&gt;%</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex<span class="sc">==</span><span class="dv">2</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(.,PACC_wide)<span class="sc">%&gt;%</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(., ashs1)<span class="sc">%&gt;%</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">vol_HIPP =</span> vol_CA1<span class="sc">+</span>vol_CA2<span class="sc">+</span>vol_CA3<span class="sc">+</span>vol_DG<span class="sc">+</span>vol_SUB)<span class="sc">%&gt;%</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">kids_total_factor =</span> <span class="fu">ifelse</span>(kids_total<span class="sc">==</span><span class="dv">4</span>, <span class="st">"4+"</span>, <span class="fu">as.character</span>(kids_total)),</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">kids_total_factor =</span> <span class="fu">factor</span>(kids_total_factor, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>, <span class="st">"4+"</span>)))<span class="sc">%&gt;%</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">scale_vol_HIPP=</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(vol_HIPP)),</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">scale_vol_tiv =</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(vol_tiv)),</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">tier_vol_HIPP =</span> <span class="fu">cut</span>(vol_HIPP, </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                 <span class="at">breaks =</span> <span class="dv">3</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                 <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>)))<span class="sc">%&gt;%</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(Z_PACC_V2)<span class="sc">%&gt;%</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(scale_vol_HIPP)<span class="sc">%&gt;%</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(cog_diff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mediation)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">lm</span>(Z_PACC_diff <span class="sc">~</span> scale_vol_HIPP <span class="sc">+</span> scale_vol_tiv <span class="sc">+</span> age_v1 <span class="sc">+</span> APOE_binary <span class="sc">+</span> education <span class="sc">+</span> cog_diff, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> data_all)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>model_mediator <span class="ot">&lt;-</span> <span class="fu">lm</span>(scale_vol_HIPP <span class="sc">~</span> kids_total <span class="sc">+</span> age_v1 <span class="sc">+</span> APOE_binary <span class="sc">+</span> education <span class="sc">+</span> scale_vol_tiv, </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> data_all[data_all<span class="sc">$</span>A<span class="sc">==</span><span class="dv">0</span>,])</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 2: Effect of parity and HV on cognition</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>model_outcome <span class="ot">&lt;-</span> <span class="fu">lm</span>(Z_PACC_diff <span class="sc">~</span> kids_total <span class="sc">+</span> scale_vol_HIPP <span class="sc">+</span> scale_vol_tiv<span class="sc">+</span> cog_diff <span class="sc">+</span> age_v1 <span class="sc">+</span> APOE_binary <span class="sc">+</span> education, </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> data_all[data_all<span class="sc">$</span>A<span class="sc">==</span><span class="dv">0</span>,])</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Check your models</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_mediator)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_outcome)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>mediation_resultsa0 <span class="ot">&lt;-</span> <span class="fu">mediate</span>(model_mediator,    <span class="co"># Mediator model</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                              model_outcome,     <span class="co"># Outcome model</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                              <span class="at">treat =</span> <span class="st">"kids_total"</span>,  <span class="co"># Independent variable</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                              <span class="at">mediator =</span> <span class="st">"scale_vol_HIPP"</span>,   <span class="co"># Mediator</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                              <span class="at">boot =</span> <span class="cn">TRUE</span>,       <span class="co"># Use bootstrapping</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                              <span class="at">sims =</span> <span class="dv">5000</span>) </span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mediation_resultsa0)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>model_mediator <span class="ot">&lt;-</span> <span class="fu">lm</span>(scale_vol_HIPP <span class="sc">~</span> kids_total <span class="sc">+</span> age_v1 <span class="sc">+</span> scale_vol_tiv<span class="sc">+</span> APOE_binary <span class="sc">+</span> education, </span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> data_all[data_all<span class="sc">$</span>A<span class="sc">==</span><span class="dv">1</span>,])</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 2: Effect of parity and HV on cognition</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>model_outcome <span class="ot">&lt;-</span> <span class="fu">lm</span>(Z_PACC_diff <span class="sc">~</span> kids_total <span class="sc">+</span> scale_vol_HIPP <span class="sc">+</span> cog_diff <span class="sc">+</span> age_v1 <span class="sc">+</span> scale_vol_tiv<span class="sc">+</span> APOE_binary <span class="sc">+</span> education, </span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> data_all[data_all<span class="sc">$</span>A<span class="sc">==</span><span class="dv">1</span>,])</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Check your models</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_mediator)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_outcome)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>mediation_resultsa1 <span class="ot">&lt;-</span> <span class="fu">mediate</span>(model_mediator,    <span class="co"># Mediator model</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>                              model_outcome,     <span class="co"># Outcome model</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>                              <span class="at">treat =</span> <span class="st">"kids_total"</span>,  <span class="co"># Independent variable</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>                              <span class="at">mediator =</span> <span class="st">"scale_vol_HIPP"</span>,   <span class="co"># Mediator</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>                              <span class="at">boot =</span> <span class="cn">TRUE</span>,       <span class="co"># Use bootstrapping</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>                              <span class="at">sims =</span> <span class="dv">5000</span>) </span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mediation_resultsa1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data_all<span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex<span class="sc">==</span><span class="dv">2</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(A)<span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> vol_HIPP, <span class="at">y=</span> Z_PACC, <span class="at">group =</span> kids_total_factor, <span class="at">colour=</span>kids_total_factor))<span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> preds_post_hoc_A0, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>predicted, <span class="at">group=</span>kids_total_factor, <span class="at">colour=</span>kids_total_factor), <span class="at">inherit.aes =</span> F, <span class="at">size=</span><span class="fl">1.3</span>)<span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> preds_post_hoc_A0, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">ymin=</span> conf.low, <span class="at">ymax =</span> conf.high, <span class="at">group=</span>kids_total_factor), <span class="at">colour=</span><span class="cn">NA</span>, <span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">inherit.aes =</span> F)<span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> preds_post_hoc_A1, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>predicted, <span class="at">group=</span>kids_total_factor, <span class="at">colour=</span>kids_total_factor), <span class="at">inherit.aes =</span> F, <span class="at">size=</span><span class="fl">1.3</span>)<span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> preds_post_hoc_A1, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">ymin=</span> conf.low, <span class="at">ymax =</span> conf.high, <span class="at">group=</span>kids_total_factor), <span class="at">colour=</span><span class="cn">NA</span>, <span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">inherit.aes =</span> F)<span class="sc">+</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>A)<span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  th</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>preds_post_hoc2 <span class="ot">&lt;-</span> <span class="fu">ggpredict</span>(fit_post_hoc2, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"vol_HIPP"</span>, <span class="st">"parous_group"</span>, <span class="st">"A"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>vol_HIPP_solo<span class="ot">&lt;-</span>data_all<span class="sc">%&gt;%</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(subject, vol_HIPP, vol_tiv)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>test_data<span class="ot">&lt;-</span>data_cog_long<span class="sc">%&gt;%</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(., vol_HIPP_solo)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>test<span class="ot">&lt;-</span><span class="fu">lmer</span>(Z_PACC <span class="sc">~</span> kids_total<span class="sc">*</span>time_diff <span class="sc">+</span>age_v1 <span class="sc">+</span> vol_HIPP <span class="sc">+</span> vol_tiv <span class="sc">+</span>APOE_binary <span class="sc">+</span> education <span class="sc">+</span>(<span class="dv">1</span> <span class="sc">|</span> subject), test_data[test_data<span class="sc">$</span>sex<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> test_data<span class="sc">$</span>A<span class="sc">==</span><span class="dv">1</span>,])</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(test)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>data_all<span class="sc">%&gt;%</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(A)<span class="sc">%&gt;%</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>vol_HIPP, <span class="at">y=</span> Z_PACC_diff, <span class="at">colour =</span> parous_group))<span class="sc">+</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>)<span class="sc">+</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> A)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>data_all_A0_0<span class="ot">&lt;-</span>data_all<span class="sc">%&gt;%</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(A<span class="sc">==</span><span class="dv">0</span>, parous_group<span class="sc">==</span><span class="st">"0"</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>data_all_A0_1<span class="ot">&lt;-</span>data_all<span class="sc">%&gt;%</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(A<span class="sc">==</span><span class="dv">0</span>, parous_group<span class="sc">==</span><span class="st">"1"</span>)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>data_all_A0_2<span class="ot">&lt;-</span>data_all<span class="sc">%&gt;%</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(A<span class="sc">==</span><span class="dv">0</span>, parous_group<span class="sc">==</span><span class="st">"2+"</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>data_all_A1_0<span class="ot">&lt;-</span>data_all<span class="sc">%&gt;%</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(A<span class="sc">==</span><span class="dv">1</span>, parous_group<span class="sc">==</span><span class="st">"0"</span>)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>data_all_A1_1<span class="ot">&lt;-</span>data_all<span class="sc">%&gt;%</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(A<span class="sc">==</span><span class="dv">1</span>, parous_group<span class="sc">==</span><span class="st">"1"</span>)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>data_all_A1_2<span class="ot">&lt;-</span>data_all<span class="sc">%&gt;%</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(A<span class="sc">==</span><span class="dv">1</span>, parous_group<span class="sc">==</span><span class="st">"2+"</span>)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>data_all_A0<span class="ot">&lt;-</span>data_all<span class="sc">%&gt;%</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(A<span class="sc">==</span><span class="dv">0</span>)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>data_all_A1<span class="ot">&lt;-</span>data_all<span class="sc">%&gt;%</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(A<span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(data_all_A1<span class="sc">$</span>Z_PACC_diff, data_all_A1<span class="sc">$</span>vol_HIPP)</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data_all_A0<span class="sc">$</span>Z_PACC_diff, data_all_A0<span class="sc">$</span>vol_HIPP)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="discussion" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Discussion</h1>
+<p>In this study, we explored the potential interaction between parity and amyloid accumulation on cognition and HV, two markers of AD. In women with low Aβ load, higher parity was associated with lesser cognitive decline and higher HV. In contrast, in women with high Aβ load, higher parity was associated with greater cognitive decline and lower HV. The effect of this interaction on cognitive trajectory appears present in both primiparous and multiparous women, but stronger in the latter. However, the effect of this interaction on HV seems only present in multiparous women. Together, this evidence presents a compelling case for long-term effects of previous pregnancies interacting with AD pathways in postmenopausal women with enriched AD genetic risk, affecting cognitive trajectory and HV. These results offer an explanation for the mixed findings from studies examining a link between parity and AD risk by shedding light on an interaction that drives opposite effects depending on amyloid burden.</p>
+<p>Parity did not independently affect cognitive trajectory but instead, its effect was moderated by amyloid load. These results are congruent with the mixed findings from previous studies examining the role of cognitive decline and parity that do not include biomarkers data. Here, our results indicate that being on a trajectory of amyloid accumulation, a known early marker of prodromal AD, changes the direction of effect of parity on cognition. Although we evaluated overall cognition which is closely linked with dementia-related markers, it is possible that this association might be domain-dependent, especially when looking at more advanced dementia cases <span class="citation" data-cites="lee2025">[<a href="#ref-lee2025" role="doc-biblioref">20</a>]</span>. The direction of this interaction was present in both primiparous and multiparous women, but only significant in the latter, suggesting the effect could be additive.</p>
+<p>Similarly, amyloid load moderated the effect of parity on HV, but did not predict it independently. Whilst evidence suggests the effect of gestation on HV is visible up to at least 6 years postpartum <span class="citation" data-cites="martínez-garcía2021">[<a href="#ref-martínez-garcía2021" role="doc-biblioref">13</a>]</span>, whether this effect is still visible in older adults is unknown. Although grand multiparity appears to be associated with lower HV <span class="citation" data-cites="jung2020">[<a href="#ref-jung2020" role="doc-biblioref">8</a>]</span>, we do not know which late-life biological mechanisms drive this change. Here, our analyses suggest that parity influences HV volume differently based on pathological burden. However, a wide knowledge gap remains, since our current window of observation only covers postmenopause, therefore ignoring the effects of the menopausal transition. This factor should be crucial to our understanding of this phenomenon given the hippocampus’ affinity for sex hormones <span class="citation" data-cites="brinton2015">[<a href="#ref-brinton2015" role="doc-biblioref">21</a>]</span>. Interestingly, the effects observed in our analyses were independent of time, which could indicate that the trigger point for these differences could have occurred before menopause. This warrants further research focusing on the menopausal window and hippocampal volume.</p>
+<p>Primiparous and multiparous women seemed to be affected differently by this interaction. Recent studies examining the effect of pregnancy on brain and hippocampal structure have only been conducted in first-time mothers. As such, there is a knowledge gap regarding whether the effects of pregnancies and childbirths are cumulative or if the changes observed occur only in the first pregnancy. Rodent studies indicate that spine density in the CA1 increases with number of pups, and that dendritic remodelling in the hippocampus is more obvious in primiparous rats <span class="citation" data-cites="Pawluski2006">[<a href="#ref-Pawluski2006" role="doc-biblioref">22</a>]</span>. Therefore, our results could suggest that the impact of pregnancy, especially on HV, depends on previous parity. However, it is important to highlight that our sample had significantly more multiparous participants, meaning our sensitivity analyses using parity as a categorical variable were likely underpowered for the nulliparous and primiparous levels. Therefore, Type II errors were more likely for these groups.</p>
+<p>There are no established theories that explain a mechanistic interaction between parity and amyloid accumulation, but several mechanisms are possible. First, parity could interact with amyloid through immune changes brought on by pregnancy. Parity affects the immune system beyond birth, as evidenced by the presence of fetal cells in the mother’s tissue at least one year postpartum <span class="citation" data-cites="Huang2021">[<a href="#ref-Huang2021" role="doc-biblioref">23</a>]</span>. The long-term consequences of these immune changes remain largely unknown, with current evidence limited to a few epidemiological studies examining the effect of parity on autoimmune disease <span class="citation" data-cites="jørgensen2012">[<a href="#ref-jørgensen2012" role="doc-biblioref">24</a>]</span>; <span class="citation" data-cites="scime2024">[<a href="#ref-scime2024" role="doc-biblioref">25</a>]</span>. A key theory behind sex differences in AD trajectory relates to immune differences and their effect on the inflammatory cascade that characterizes amyloid accumulation <span class="citation" data-cites="buckley2022">[<a href="#ref-buckley2022" role="doc-biblioref">26</a>]</span>. Evidence suggests the percentage of amyloid accumulation mediated by microglial activation is nearly 3 times as high in females compared to males <span class="citation" data-cites="casaletto2022">[<a href="#ref-casaletto2022" role="doc-biblioref">27</a>]</span>. In that sense, gestational-related immune changes could contribute to the observed sex-differences in immunological pathways in AD.</p>
+<p>Second, both could interact through modification of vascular risk. Cardiovascular risk is highly associated with all-cause dementia and AD risk <span class="citation" data-cites="farnsworthvoncederwald2022">[<a href="#ref-farnsworthvoncederwald2022" role="doc-biblioref">28</a>]</span>, and pregnancy requires substantial vasculature changes for the well being of the new foetus, in turn leading to significant increases in plasma volume and cardiac output <span class="citation" data-cites="iacobaeus2017">[<a href="#ref-iacobaeus2017" role="doc-biblioref">29</a>]</span>. To accommodate these changes, vascular resistance decreases via an outward hypertrophy of vessels. Although these changes are mostly seen in the uterine vasculature, these changes are, to some extent, pervasive to the entire vascular system <span class="citation" data-cites="boeldt2017">[<a href="#ref-boeldt2017" role="doc-biblioref">30</a>]</span>. Importantly, Aβ peptides can deposite on brain blood vessel, interfering with its integrity and function. Therefore, previous parity could modify participants’ vascular system, which in turn could modulate the impact of Aβ on vasculature, or resilience to Aβ accumulation, and modify AD risk and trajectory. Given that microglial activation is strongly related to cerebrovascular injury, but also Aβ accumulation, it is possible that vascular and immune pathways interact with each other as well. Unfortunately, the effect of previous normotensive pregnancy on the vasculature system in older females is largely unknown, meaning further work is needed to characterise their vascular impact on postmenopausal individuals.</p>
+<p>It is unclear whether our cognition and hippocampal results reflect a single mechanistic pathway or independent consequences of the parity-amyloid interaction. One possibility is a sequential cascade: HV changes may have occurred earlier and remained stable over our observation window, while their downstream effects on cognition are only now becoming detectable. This would be consistent with a model where structural hippocampal vulnerability precedes measurable cognitive decline. Alternatively, HV and cognition could be affected through distinct pathways—for example, immune-mediated amyloid accumulation directly impacting hippocampal structure, while vascular mechanisms preferentially affect cognitive reserve and decline trajectories. A third consideration is that cognitive changes may be inherently slower to manifest or harder to detect in this relatively healthy, cognitively intact cohort, potentially explaining the time-dependent pattern we observe. Additional timepoints in our cohort will, in the future, help us untangle these possibilities.</p>
+<p>A limitation of this study is the lack of hormonal measurements. By using only proxy measurements, we are able to estimate but not definitively conclude the role of sex steroid hormones in our results. It is quite possible the role of sex hormones in our observations was underestimated due to this missing variable. Additionally, the ALFA+ cohort is very homogeneous: participants are predominantly Caucasian whites from middle and upper-middle class backgrounds who were selected due to their excellent health records. Therefore, caution should be exercised when generalizing our results to a wider population. Furthermore, our sample lacked highly multiparous individuals. Previous studies on the effect of parity on cognition and neurodegeneration have found an inverted U-shaped relationship between parity and outcome measures, indicating that our lack of women having had more than 4 children might be providing an incomplete picture of the phenomenon.</p>
+</section>
+<section id="appendix" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Appendix</h1>
+<section id="mri-data-acquisition" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="mri-data-acquisition"><span class="header-section-number">6.1</span> MRI data acquisition</h2>
+<p>MRI scans were acquired on a 3.0 T scanner (GE Discovery MR750 W 3 T) using the same protocol for all participants, which included one T1- and three T2- weighted sequences. The 3D-T1w sequence was designed with an isotropic voxel size of1mm3 and a matrix size of256x256x160 (TR/TE/TI = 8.0/3.7/450 ms, NSA = 1, flip angle = 8°). Three 3D-T2w sequences, with a voxel size of1 mm× 1 mm× 3 mm, were also used: fluid attenuation inversion recovery (FLAIR: TR/TE/ TI = 11,000/90/2600 ms, flip angle = 160°), fast spin echo (FSE: TR/TE = 5000/85 ms, flip angle = 110°) and, gradient echo (GRE: TR/TE = 1300/23 ms, flip angle = 15°). All scans were visually assessed to verify their quality and to detect incidental findings by a trained neuroradiologist and have been reported elsewhere <span class="citation" data-cites="brugulat-serrat2017">[<a href="#ref-brugulat-serrat2017" role="doc-biblioref">31</a>]</span>.</p>
+</section>
+<section id="hippocampal-subfields" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="hippocampal-subfields"><span class="header-section-number">6.2</span> Hippocampal subfields</h2>
+<p>No significant main effect of parity was found in any of the hippocampal subfields. However, there was a significant effect of the interaction between parity and Aβ on the dentate gyrus (β = -54.345, SE = 26.342, p = 0.04), and a trending effect of this same interaction in the subiculum (β = -25.207, SE = 13.499, p = 0.063). The direction of the effect followed the same as for the whole hippocampus, where Aβ- women showed a positive relationship between parity and hippocampal volume, whilst Aβ- women showed the opposite (Figure X)</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ad_signatures_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="references" class="level1 unnumbered" data-number="7">
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">7 References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-riedel2016" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">Riedel BC, Thompson PM, Brinton RD. Age, APOE and sex: Triad of risk of Alzheimer<span>’</span>s disease. The Journal of Steroid Biochemistry and Molecular Biology 2016;160:134–47. <a href="https://doi.org/10.1016/j.jsbmb.2016.03.012">https://doi.org/10.1016/j.jsbmb.2016.03.012</a>.</div>
+</div>
+<div id="ref-holland2013" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">Holland D, Desikan RS, Dale AM, McEvoy LK. Higher Rates of Decline for Women and<span><em>Apolipoprotein E</em></span>ε4 Carriers. American Journal of Neuroradiology 2013;34:2287–93. <a href="https://doi.org/10.3174/ajnr.a3601">https://doi.org/10.3174/ajnr.a3601</a>.</div>
+</div>
+<div id="ref-ardekani2016" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">Ardekani BA, Convit A, Bachman AH. Analysis of the MIRIAD data shows sex differences in hippocampal atrophy progression. Journal of Alzheimer’s Disease 2016;50:847–57. <a href="https://doi.org/10.3233/jad-150780">https://doi.org/10.3233/jad-150780</a>.</div>
+</div>
+<div id="ref-andrews2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">Andrews D, Ducharme S, Chertkow H, Sormani MP, Collins DL. The higher benefit of lecanemab in males compared to females in CLARITY AD is probably due to a real sex effect. Alzheimer’s &amp; Dementia 2025;21. <a href="https://doi.org/10.1002/alz.14467">https://doi.org/10.1002/alz.14467</a>.</div>
+</div>
+<div id="ref-Colucci2006" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">Colucci M, Cammarata S, Assini A, Croce R, Clerici F, Novello C, et al. The number of pregnancies is a risk factor for Alzheimer’s disease. European Journal of Neurology 2006;13:1374–7. <a href="https://doi.org/10.1111/j.1468-1331.2006.01520.x">https://doi.org/10.1111/j.1468-1331.2006.01520.x</a>.</div>
+</div>
+<div id="ref-bae2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">Bae JB, Lipnicki DM, Han JW, Sachdev PS, Kim TH, Kwak KP, et al. Does parity matter in women<span>’</span>s risk of dementia? A COSMIC collaboration cohort study. BMC Medicine 2020;18. <a href="https://doi.org/10.1186/s12916-020-01671-1">https://doi.org/10.1186/s12916-020-01671-1</a>.</div>
+</div>
+<div id="ref-Beeri2009a" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">Beeri MS, Rapp M, Schmeidler J, Reichenberg A, Purohit DP, Perl DP, et al. Number of children is associated with neuropathology of Alzheimer’s disease in women. Neurobiology of Aging 2009;30:1184–91. <a href="https://doi.org/10.1016/j.neurobiolaging.2007.11.011">https://doi.org/10.1016/j.neurobiolaging.2007.11.011</a>.</div>
+</div>
+<div id="ref-jung2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">Jung JH, Lee GW, Lee JH, Byun MS, Yi D, Jeon SY, et al. Multiparity, brain atrophy, and cognitive decline. Frontiers in Aging Neuroscience 2020;12. <a href="https://doi.org/10.3389/fnagi.2020.00159">https://doi.org/10.3389/fnagi.2020.00159</a>.</div>
+</div>
+<div id="ref-apostolova2006" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline">Apostolova LG, Dutton RA, Dinov ID, Hayashi KM, Toga AW, Cummings JL, et al. Conversion of Mild Cognitive Impairment to Alzheimer Disease Predicted by Hippocampal Atrophy Maps. Archives of Neurology 2006;63:693. <a href="https://doi.org/10.1001/archneur.63.5.693">https://doi.org/10.1001/archneur.63.5.693</a>.</div>
+</div>
+<div id="ref-puri2023" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[10] </div><div class="csl-right-inline">Puri TA, Richard JE, Galea LAM. Beyond sex differences: short- and long-term effects of pregnancy on the brain. Trends in Neurosciences 2023;46:459–71. <a href="https://doi.org/10.1016/j.tins.2023.03.010">https://doi.org/10.1016/j.tins.2023.03.010</a>.</div>
+</div>
+<div id="ref-pawluski2007" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[11] </div><div class="csl-right-inline">Pawluski JL, Galea LAM. Reproductive experience alters hippocampal neurogenesis during the postpartum period in the dam. Neuroscience 2007;149:53–67. <a href="https://doi.org/10.1016/j.neuroscience.2007.07.031">https://doi.org/10.1016/j.neuroscience.2007.07.031</a>.</div>
+</div>
+<div id="ref-eid2019" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[12] </div><div class="csl-right-inline">Eid RS, Chaiton JA, Lieblich SE, Bodnar TS, Weinberg J, Galea LAM. Early and late effects of maternal experience on hippocampal neurogenesis, microglia, and the circulating cytokine milieu. Neurobiology of Aging 2019;78:1–17. <a href="https://doi.org/10.1016/j.neurobiolaging.2019.01.021">https://doi.org/10.1016/j.neurobiolaging.2019.01.021</a>.</div>
+</div>
+<div id="ref-martínez-garcía2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[13] </div><div class="csl-right-inline">Martínez-García M, Paternina-Die M, Barba-Müller E, Martín de Blas D, Beumala L, Cortizo R, et al. Do Pregnancy-Induced Brain Changes Reverse? The Brain of a Mother Six Years after Parturition. Brain Sciences 2021;11:168. <a href="https://doi.org/10.3390/brainsci11020168">https://doi.org/10.3390/brainsci11020168</a>.</div>
+</div>
+<div id="ref-hollands2017" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[14] </div><div class="csl-right-inline">Hollands C, Tobin MK, Hsu M, Musaraca K, Yu T-S, Mishra R, et al. Depletion of adult neurogenesis exacerbates cognitive deficits in Alzheimer<span>’</span>s disease by compromising hippocampal inhibition. Molecular Neurodegeneration 2017;12. <a href="https://doi.org/10.1186/s13024-017-0207-7">https://doi.org/10.1186/s13024-017-0207-7</a>.</div>
+</div>
+<div id="ref-cacciaglia2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[15] </div><div class="csl-right-inline">Cacciaglia R, Falcón C, Benavides GS, Brugulat-Serrat A, Alomà MM, Calvet MS, et al. Soluble Aβ pathology predicts neurodegeneration and cognitive decline independently on p<span>-</span>tau in the earliest Alzheimer’s <span><em>continuum</em></span>: Evidence across two independent cohorts. Alzheimer’s &amp; Dementia 2025;21. <a href="https://doi.org/10.1002/alz.14415">https://doi.org/10.1002/alz.14415</a>.</div>
+</div>
+<div id="ref-buschke2017" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[16] </div><div class="csl-right-inline">Buschke H, Mowrey WB, Ramratan WS, Zimmerman ME, Loewenstein DA, Katz MJ, et al. Memory Binding Test Distinguishes Amnestic Mild Cognitive Impairment and Dementia from Cognitively Normal Elderly. Archives of Clinical Neuropsychology 2017;32:29–39. <a href="https://doi.org/10.1093/arclin/acw083">https://doi.org/10.1093/arclin/acw083</a>.</div>
+</div>
+<div id="ref-mormino2017" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[17] </div><div class="csl-right-inline">Mormino EC, Papp KV, Rentz DM, Donohue MC, Amariglio R, Quiroz YT, et al. Early and late change on the preclinical Alzheimer’s cognitive composite in clinically normal older individuals with elevated amyloid β. Alzheimer’s &amp; Dementia 2017;13:1004–12. <a href="https://doi.org/10.1016/j.jalz.2017.01.018">https://doi.org/10.1016/j.jalz.2017.01.018</a>.</div>
+</div>
+<div id="ref-Milà-Alomà2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[18] </div><div class="csl-right-inline">Milà-Alomà M, Salvadó G, Gispert JD, Vilor-Tejedor N, Grau-Rivera O, Sala-Vila A, et al. Amyloid beta, tau, synaptic, neurodegeneration, and glial biomarkers in the preclinical stage of the Alzheimer’s <span><em>continuum</em></span>. Alzheimer’s &amp; Dementia 2020;16:1358–71. <a href="https://doi.org/10.1002/alz.12131">https://doi.org/10.1002/alz.12131</a>.</div>
+</div>
+<div id="ref-Yushkevich2015" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[19] </div><div class="csl-right-inline">Yushkevich PA, Pluta JB, Wang H, Xie L, Ding S-L, Gertje EC, et al. Automated volumetry and regional thickness analysis of hippocampal subfields and medial temporal cortical structures in mild cognitive impairment. Human Brain Mapping 2014;36:258–87. <a href="https://doi.org/10.1002/hbm.22627">https://doi.org/10.1002/hbm.22627</a>.</div>
+</div>
+<div id="ref-lee2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[20] </div><div class="csl-right-inline">Lee BH, Barha CK, Chaiton J, Lieblich SE, Wong S, Hodges TE, et al. Previous parity differentially influences cognition in later life depending on dementia status. Npj Dementia 2025;1. <a href="https://doi.org/10.1038/s44400-025-00035-x">https://doi.org/10.1038/s44400-025-00035-x</a>.</div>
+</div>
+<div id="ref-brinton2015" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[21] </div><div class="csl-right-inline">Brinton RD, Yao J, Yin F, Mack WJ, Cadenas E. Perimenopause as a neurological transition state. Nature Reviews Endocrinology 2015;11:393–405. <a href="https://doi.org/10.1038/nrendo.2015.82">https://doi.org/10.1038/nrendo.2015.82</a>.</div>
+</div>
+<div id="ref-Pawluski2006" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[22] </div><div class="csl-right-inline">Pawluski JL, Galea LAM. Hippocampal morphology is differentially affected by reproductive experience in the mother. Journal of Neurobiology 2005;66:71–81. <a href="https://doi.org/10.1002/neu.20194">https://doi.org/10.1002/neu.20194</a>.</div>
+</div>
+<div id="ref-Huang2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[23] </div><div class="csl-right-inline">Huang X, Wang L, Zhao S, Liu H, Chen S, Wu L, et al. Pregnancy induces an immunological memory characterized by maternal immune alterations through specific genes methylation. Frontiers in Immunology 2021;12. <a href="https://doi.org/10.3389/fimmu.2021.686676">https://doi.org/10.3389/fimmu.2021.686676</a>.</div>
+</div>
+<div id="ref-jørgensen2012" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[24] </div><div class="csl-right-inline">Jørgensen KT, Pedersen BV, Nielsen NM, Jacobsen S, Frisch M. Childbirths and risk of female predominant and other autoimmune diseases in a population-based Danish cohort. Journal of Autoimmunity 2012;38:J81–7. <a href="https://doi.org/10.1016/j.jaut.2011.06.004">https://doi.org/10.1016/j.jaut.2011.06.004</a>.</div>
+</div>
+<div id="ref-scime2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[25] </div><div class="csl-right-inline">Scime NV, Grandi SM, Ray JG, Dennis C-L, De Vera MA, Banack HR, et al. Pregnancy complications and new-onset maternal autoimmune disease. International Journal of Epidemiology 2024;53. <a href="https://doi.org/10.1093/ije/dyae115">https://doi.org/10.1093/ije/dyae115</a>.</div>
+</div>
+<div id="ref-buckley2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[26] </div><div class="csl-right-inline">Buckley RF. Sex differences in Alzheimer<span>’</span>s disease risk: are immune responses the key? Brain 2022;145:3341–2. <a href="https://doi.org/10.1093/brain/awac316">https://doi.org/10.1093/brain/awac316</a>.</div>
+</div>
+<div id="ref-casaletto2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[27] </div><div class="csl-right-inline">Casaletto KB, Nichols E, Aslanyan V, Simone SM, Rabin JS, La Joie R, et al. Sex-specific effects of microglial activation on Alzheimer<span>’</span>s disease proteinopathy in older adults. Brain 2022;145:3536–45. <a href="https://doi.org/10.1093/brain/awac257">https://doi.org/10.1093/brain/awac257</a>.</div>
+</div>
+<div id="ref-farnsworthvoncederwald2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[28] </div><div class="csl-right-inline">Farnsworth von Cederwald B, Josefsson M, Wåhlin A, Nyberg L, Karalija N. Association of Cardiovascular Risk Trajectory With Cognitive Decline and Incident Dementia. Neurology 2022;98. <a href="https://doi.org/10.1212/wnl.0000000000200255">https://doi.org/10.1212/wnl.0000000000200255</a>.</div>
+</div>
+<div id="ref-iacobaeus2017" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[29] </div><div class="csl-right-inline">Iacobaeus C, Andolf E, Thorsell M, Bremme K, Jörneskog G, Östlund E, et al. Longitudinal study of vascular structure and function during normal pregnancy. Ultrasound in Obstetrics &amp; Gynecology 2017;49:46–53. <a href="https://doi.org/10.1002/uog.17326">https://doi.org/10.1002/uog.17326</a>.</div>
+</div>
+<div id="ref-boeldt2017" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[30] </div><div class="csl-right-inline">Boeldt DS, Bird IM. Vascular adaptation in pregnancy and endothelial dysfunction in preeclampsia. Journal of Endocrinology 2017;232:R27–44. <a href="https://doi.org/10.1530/joe-16-0340">https://doi.org/10.1530/joe-16-0340</a>.</div>
+</div>
+<div id="ref-brugulat-serrat2017" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[31] </div><div class="csl-right-inline">Brugulat-Serrat A, Rojas S, Bargalló N, Conesa G, Minguillón C, Fauria K, et al. Incidental findings on brain MRI of cognitively normal first-degree descendants of patients with Alzheimer’s disease: a cross-sectional analysis from the ALFA (Alzheimer and Families) project. BMJ Open 2017;7:e013215. <a href="https://doi.org/10.1136/bmjopen-2016-013215">https://doi.org/10.1136/bmjopen-2016-013215</a>.</div>
+</div>
+</div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
