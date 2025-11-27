@@ -100,7 +100,13 @@ th <- call_aesthethics(13)
 
 # Abstract
 
-300 words
+Background and objectives: Epidemiological studies exploring the impact of parity on Alzheimer’s Disease (AD) yield mixed results, and little is known about its impact on AD biomarkers. We examined the effect of parity and AD pathology on cognitive and hippocampal volume (HV) changes in cognitively unimpaired (CU) postmenopausal women. 
+
+Methods: We included 254 CU postmenopausal women from the ALFA+ study who completed two visits spaced by ~3 years (MEAN, SD) with reproductive data, cognitive testing (Preclinical Alzheimer Cognitive Composite), CSF biomarkers (Aβ42 and Aβ40), and structural MRI. We used linear mixed-effects models to investigate the interactive effects of parity, time, and Aβ status (based on CSF Aβ42/Aβ40) on cognition and HV. APOE-ε4 status, age, and total intracranial volume were included as covariates. 
+
+Results: A significant interaction was observed between parity and Aβ status on cognitive decline and HV. In women with a positive amyloid status, higher parity was associated with a  steeper cognitive decline (p=0.033) and lower HV (p = 0.036). Sensitivity analyses indicated that multiparous women showed the strongest association between Aβ status and these outcome variables. 
+Discussion: In CU postmenopausal women, higher parity interacts with AD pathology to negatively influence cognitive changes and hippocampal volume. The effect of parity on cognition, particularly among multiparous women, is partly mediated by HV. These findings suggest that parity history impacts the resilience to AD pathology in preclinical AD stages.
+
 
 # Introduction
 
@@ -377,7 +383,10 @@ data_table<-data%>%
  dplyr::select(age_v1, kids_total, A, APOE_binary, education, vol_tiv.x, vol_HIPP_v1, vol_HIPP_v2, Z_PACC_v1, subject)%>%
   left_join(.,cognition2)%>%
   rename(Z_PACC_v2 = Z_PACC)%>%
-   dplyr::select(age_v1, kids_total, education,  A, APOE_binary,  Z_PACC_v1, Z_PACC_v2, vol_HIPP_v1, vol_HIPP_v2, vol_tiv.x)
+   dplyr::select(age_v1, kids_total, education,  A, APOE_binary, Z_PACC_v1, Z_PACC_v2, vol_HIPP_v1, vol_HIPP_v2, vol_tiv.x)%>%
+  mutate(vol_tiv.x=vol_tiv.x/1000,
+         vol_HIPP_v1 = vol_HIPP_v1/1000,
+         vol_HIPP_v2 = vol_HIPP_v2/1000)
  
 
 desc_table<-tbl_summary(data_table,
@@ -390,10 +399,11 @@ desc_table<-tbl_summary(data_table,
                      age_v1 = "Age at first visit, Mean (SD)",
                      vol_tiv.x = "Baseline Total Intracranial Volume (cm3), Mean (SD)",
                      education = "Education (years), Mean (SD)",
-                     vol_HIPP_v1 = "Baseline Hippocampal volume, Mean (SD)",
-                     vol_HIPP_v2 = "Follow-up Hippocampal volume, Mean (SD)",
+                     vol_HIPP_v1 = "Baseline Hippocampal volume (cm3), Mean (SD)",
+                     vol_HIPP_v2 = "Follow-up Hippocampal volume (cm3), Mean (SD)",
                      Z_PACC_v1 = "Baseline PACC z-score, Mean (SD)",
                      Z_PACC_v2 = "Follow-up PACC z-score, Mean (SD)"),
+            
             value = list(APOE_binary= "1",
                          A= "1"))%>%
   add_n()%>%
@@ -403,6 +413,10 @@ desc_table<-tbl_summary(data_table,
   bold_labels()
 
 
+library(MASS)
+
+cont_tbl<-table(data$kids_total,data$estado_civil) 
+print(chisq.test(cont_tbl))
 ```
 
 ```{r, echo = F, warning=F}
@@ -427,11 +441,14 @@ summary(fit_amyloid)
 
 ```
 
-No main effect of parity was found on amyloid load when looking at baseline data (β = `r tidy(fit_amyloid)$estimate[2]`, SE = `r tidy(fit_amyloid)$std.error[2]`, p=`r tidy(fit_amyloid)$p.value[2]`).
+No main effect of parity was found on amyloid load when looking at baseline data (p=`r tidy(fit_amyloid)$p.value[2]`).
 
 ## Association between parity and amyloid status on cognition
 
 ```{r, include=F}
+
+data_cog_long<-data_cog_long%>%
+  mutate(time_diff_years = time_diff/365.25)
 
 fit_cog_PACC_lm_simple<-lm(Z_PACC ~ kids_total+A +age_v1 + APOE_binary + education ,data_cog_long[data_cog_long$sex==2 & data_cog_long$Visit==1,])
 summary(fit_cog_PACC_lm_simple)
@@ -441,48 +458,47 @@ summary(fit_cog_PACC_lm)
 
 ```
 
-Baseline analyses revealed no significant main effect of parity (β = `r tidy(fit_cog_PACC_lm_simple)$estimate[2]`, SE = `r tidy(fit_cog_PACC_lm_simple)$std.error[2]`, p=`r tidy(fit_cog_PACC_lm_simple)$p.value[2]`) or any significant interaction between parity and Aβ status (β = `r tidy(fit_cog_PACC_lm)$estimate[7]`, SE = `r tidy(fit_cog_PACC_lm)$std.error[7]`, p=`r tidy(fit_cog_PACC_lm)$p.value[7]`) on PACC.
+Baseline analyses revealed no significant main effect of parity (p=`r tidy(fit_cog_PACC_lm_simple)$p.value[2]`) or any significant interaction between parity and Aβ status (p=`r tidy(fit_cog_PACC_lm)$p.value[7]`) on PACC.
 
 ## Association between parity and amyloid status on cognitive trajectory
 
 ```{r, include=F}
 
-fit_cog_PACC_simple<-lmer(Z_PACC ~ kids_total*time_diff+ A+age_v1 + APOE_binary + education +(1 | subject), data_cog_long[data_cog_long$sex==2,])
+fit_cog_PACC_simple<-lmer(Z_PACC ~ kids_total*time_diff_years+ A+age_v1 + APOE_binary + education +(1 | subject), data_cog_long[data_cog_long$sex==2,])
 summary(fit_cog_PACC_simple)
 
-fit_cog_PACC<-lmer(Z_PACC ~ kids_total*A*time_diff +age_v1 + APOE_binary + education +(1 | subject), data_cog_long[data_cog_long$sex==2,])
+fit_cog_PACC<-lmer(Z_PACC ~ kids_total*A*time_diff_years +age_v1 + APOE_binary + education +(1 | subject), data_cog_long[data_cog_long$sex==2,])
 summary(fit_cog_PACC)
 
 
-fit_cog_PACC_group<-lmer(Z_PACC ~ parous_group*A*time_diff +age_v1 + APOE_binary + education +(1 | subject), data_cog_long[data_cog_long$sex==2,])
+fit_cog_PACC_group<-lmer(Z_PACC ~ parous_group*A*time_diff_years +age_v1 + APOE_binary + education +(1 | subject), data_cog_long[data_cog_long$sex==2,])
 summary(fit_cog_PACC_group)
 
-trend_cog<-emtrends(fit_cog_PACC_group, ~ A * parous_group, var = "time_diff")
+trend_cog<-emtrends(fit_cog_PACC_group, ~ A * parous_group, var = "time_diff_years")
 pairs(trend_cog, by= "parous_group")
 ```
 
-Parity did not significantly impact PACC trajectory (β = `r tidy(fit_cog_PACC_simple)$estimate[8]`, SE = `r tidy(fit_cog_PACC_simple)$std.error[8]`, p=`r tidy(fit_cog_PACC_simple)$p.value[8]`). Introducing a 3-way interaction between parity, time and Aß positivity revealed a moderate yet significant effect on PACC z-score change (β = `r tidy(fit_cog_PACC)$estimate[11]`, SE = `r tidy(fit_cog_PACC)$std.error[11]`, p=`r tidy(fit_cog_PACC)$p.value[11]`). Results suggest that Aß- women showed less cognitive decline with a higher number of children, while Aβ+ women the opposite (Figure X).
+Parity did not significantly impact PACC trajectory (p=`r tidy(fit_cog_PACC_simple)$p.value[8]`). Introducing a 3-way interaction between parity, time and Aß positivity revealed a small yet significant effect on PACC z-score change (β = `r tidy(fit_cog_PACC)$estimate[11]`, SE = `r tidy(fit_cog_PACC)$std.error[11]`, p=`r tidy(fit_cog_PACC)$p.value[11]`). Results suggest that Aß- women showed less cognitive decline with a higher number of children, while Aβ+ women the opposite (Figure X).
 
 ```{r, include=F}
 library(ggeffects)
-effects_ashs <- ggeffect(fit_cog_PACC, terms = c("time_diff", "kids_total", "A"))
 
 # Create grid of values for prediction - specify multiple time points
-time_range <- range(data_cog_long$time_diff, na.rm = TRUE)
+time_range <- range(data_cog_long$time_diff_years, na.rm = TRUE)
 time_seq <- seq(from = time_range[1], to = time_range[2], length.out = 10)
 
-emm_grid <- emmeans(fit_cog_PACC, ~ time_diff * kids_total * A,
+emm_grid <- emmeans(fit_cog_PACC, ~ time_diff_years * kids_total * A,
                     at = list(time = time_seq),
                     data= data_cog_long)
 emm_df <- as.data.frame(emm_grid)
 
-slopes <- emtrends(fit_cog_PACC, ~ kids_total * A, var = "time_diff", data= data_cog_long, at = list(kids_total = c(0, 1, 2, 3, 4)))
+slopes <- emtrends(fit_cog_PACC, ~ kids_total * A, var = "time_diff_years", data= data_cog_long, at = list(kids_total = c(0, 1, 2, 3, 4)))
 slopes_df <- as.data.frame(slopes)
 
-cog_p1<- ggplot(slopes_df, aes(x = kids_total, y = time_diff.trend, 
+cog_p1<- ggplot(slopes_df, aes(x = kids_total, y = time_diff_years.trend, 
                             fill = as.factor(A))) +
   geom_col(position = "dodge", alpha = 0.8, color = "black", size = 0.3) +
-  geom_errorbar(aes(ymin = time_diff.trend - SE, ymax = time_diff.trend + SE),
+  geom_errorbar(aes(ymin = time_diff_years.trend - SE, ymax = time_diff_years.trend + SE),
                 position = position_dodge(width = 0.9), width = 0.3)+
   th+
   labs(x = "Number of childbirths", 
@@ -493,15 +509,15 @@ cog_p1<- ggplot(slopes_df, aes(x = kids_total, y = time_diff.trend,
                      labels = c("Aβ-", "Aβ+"))+
   geom_text(data = data.frame(A = factor("Aβ+", 
                                                      levels = c("Aβ-", "Aβ+")), 
-                              time_diff = Inf, 
+                              time_diff_years = Inf, 
                               Z_PACC = Inf, 
                               label = "p= 0.033*"),
-            aes(x = time_diff, y = Z_PACC, label = label),
+            aes(x = time_diff_years, y = Z_PACC, label = label),
             size = 4, vjust = 1.5, hjust = 1.2, inherit.aes = FALSE)
 ```
 
 ```{r cog_plot_emmeans, echo=F, warning=F}
-preds_pacc_group <- ggpredict(fit_cog_PACC_group, terms = c("time_diff", "parous_group", "A"))%>%
+preds_pacc_group <- ggpredict(fit_cog_PACC_group, terms = c("time_diff_years", "parous_group", "A"))%>%
   as.data.frame()
 
 preds_pacc_groupA0<-as.data.frame(preds_pacc_group)%>%
@@ -523,7 +539,8 @@ cog_p2<-data_cog_long %>%
   filter(sex == 2, !is.na(A)) %>%
   mutate(A = factor(A, levels = c("0", "1"), labels = c("Aβ-", "Aβ+")),
          parous_group= factor(parous_group, levels = c("0", "1", "2+"), labels = c("Nulliparous", "Primiparous", "Multiparous"))) %>%
-  ggplot(aes(x = time_diff, y = Z_PACC, color = A)) +
+  ggplot(aes(x = time_diff_years, y = Z_PACC, color = A, group=subject)) +
+  geom_line(alpha=0.2)+
   geom_line(data =preds_pacc_groupA0, aes(x=x, 
                                 y=predicted, 
                                 group=parous_group), size=1.3) +
@@ -540,32 +557,33 @@ cog_p2<-data_cog_long %>%
                                   group=parous_group), inherit.aes = F, alpha=.09)+
   facet_wrap(~parous_group) +
   th+
-  labs(x = "Time difference (days)", 
+  labs(x = "Time difference (years)", 
        y = "PACC Z-score", 
        color = "Aβ status")+
   scale_color_manual(values = c("#1CA8B7", "#FF7043"),
                      labels = c("Aβ-", "Aβ+"))+
   geom_text(data = data.frame(parous_group = factor("Multiparous", 
                                                      levels = c("Nulliparous", "Primiparous", "Multiparous")), 
-                              time_diff = Inf, 
+                              time_diff_years = Inf, 
                               Z_PACC = Inf, 
                               label = "p= 0.009*"),
-            aes(x = time_diff, y = Z_PACC, label = label),
+            aes(x = time_diff_years, y = Z_PACC, label = label),
             size = 4, vjust = 1.5, hjust = 1.2, inherit.aes = FALSE)+
   geom_text(data = data.frame(parous_group = factor("Nulliparous", 
                                                      levels = c("Nulliparous", "Primiparous", "Multiparous")), 
-                              time_diff = Inf, 
+                              time_diff_years = Inf, 
                               Z_PACC = Inf, 
                               label = "p= 0.514"),
-            aes(x = time_diff, y = Z_PACC, label = label),
+            aes(x = time_diff_years, y = Z_PACC, label = label),
             size = 4, vjust = 1.5, hjust = 1.2, inherit.aes = FALSE)+
   geom_text(data = data.frame(parous_group = factor("Primiparous", 
                                                      levels = c("Nulliparous", "Primiparous", "Multiparous")), 
-                              time_diff = Inf, 
+                              time_diff_years = Inf, 
                               Z_PACC = Inf, 
-                              label = "p= 0.3440"),
-            aes(x = time_diff, y = Z_PACC, label = label),
+                              label = "p= 0.344"),
+            aes(x = time_diff_years, y = Z_PACC, label = label),
             size = 4, vjust = 1.5, hjust = 1.2, inherit.aes = FALSE)
+  
 ```
 
 ```{r cog_plot_all, echo=F, warning=F}
@@ -584,7 +602,7 @@ Reproducing the analysis across parity groups did not yield a significant estima
 mod_ashs_lm_simple<-lm(vol_HIPP ~  kids_total+A +age_v1  + scale(vol_tiv) + education+ APOE_binary, data = data_ashs[data_ashs$sex==2 & data_ashs$Visit==1,])
 
 
-mod_ashs_lm<-lm(vol_HIPP ~  kids_total*A +age_v1  + scale(vol_tiv) + education+ APOE_binary, data = data_ashs[data_ashs$sex==2 & data_ashs$Visit==1,])
+mod_ashs_lm<-lm(vol_HIPP ~  kids_total*A +age_v1+ scale(vol_tiv) + education+ APOE_binary, data = data_ashs[data_ashs$sex==2 & data_ashs$Visit==1,])
 summary(mod_ashs_lm)
 
 mod_ashs_lm_group<-lm(vol_HIPP ~  parous_group*A +age_v1  + scale(vol_tiv) + education+ APOE_binary, data = data_ashs[data_ashs$sex==2 & data_ashs$Visit==1,])
@@ -597,11 +615,11 @@ emm_parous_A <- emmeans(mod_ashs_lm_group,
 pairs(emm_parous_A, by= "parous_group")
 ```
 
-No significant main effect of parity on HV was found cross-sectionally (β = `r tidy(mod_ashs_lm_simple)$estimate[2]`, SE = `r tidy(mod_ashs_lm_simple)$std.error[2]`, p = `r tidy(mod_ashs_lm_simple)$p.value[2]`). However, the interaction between parity and Aβ status was significant (β = `r tidy(mod_ashs_lm)$estimate[8]`, SE = `r tidy(mod_ashs_lm)$std.error[8]`, p = `r tidy(mod_ashs_lm)$p.value[8]`), showing that Aβ- women exhibited a positive relationship between parity and hippocampal volume, whilst Aβ+ women showed the opposite (Figure X).
+No significant main effect of parity on HV was found cross-sectionally (p = `r tidy(mod_ashs_lm_simple)$p.value[2]`). However, the interaction between parity and Aβ status was significant (β = `r tidy(mod_ashs_lm)$estimate[8]`, SE = `r tidy(mod_ashs_lm)$std.error[8]`, p = `r tidy(mod_ashs_lm)$p.value[8]`), showing that Aβ- women exhibited a positive relationship between parity and hippocampal volume, whilst Aβ+ women showed the opposite (Figure X).
 
 ```{r hippo_plot, echo=F, warning=F}
-cyan_gradient <- c("#4DD0E1", "#1CA8B7", "#1E8895", "#0D707B", "#0F565E")
-orange_gradient <- c("#FF8A65", "#FF7043", "#FF5722", "#F4511E", "#BF360C")
+cyan_gradient <- c("#1CA8B7", "#1CA8B7", "#1CA8B7", "#1CA8B7", "#1CA8B7")
+orange_gradient <- c("#FF7043", "#FF7043", "#FF7043", "#FF7043", "#FF7043")
 
 # Create a named vector that maps kids_total values to colors for each A group
 color_mapping <- c(
@@ -693,7 +711,7 @@ summary(mod_ashs)
 plot_model(mod_ashs, type="int")
 ```
 
-Parity did not significantly impact HV trajectory (β = `r tidy(mod_ashs_simple)$estimate[9]`, SE = `r tidy(mod_ashs_simple)$std.error[9]`, p = `r tidy(mod_ashs_simple)$p.value[9]`). The 3-way interaction between time, parity and Aβ status was not significant (β = `r tidy(mod_ashs)$estimate[12]`, SE = `r tidy(mod_ashs)$std.error[12]`, p = `r tidy(mod_ashs)$p.value[12]`) . However, parity and amyloid interaction still remained significant (β = `r tidy(mod_ashs)$estimate[10]`, SE = `r tidy(mod_ashs)$std.error[10]`, p = `r tidy(mod_ashs)$p.value[10]`), suggesting that the observed relationship is does not show differences in the rate of hippocampal atrophy over time
+Parity did not significantly impact HV trajectory (p = `r tidy(mod_ashs_simple)$p.value[9]`). The 3-way interaction between time, parity and Aβ status was not significant (p = `r tidy(mod_ashs)$p.value[12]`) . However, parity and amyloid interaction still remained significant (β = `r tidy(mod_ashs)$estimate[10]`, SE = `r tidy(mod_ashs)$std.error[10]`, p = `r tidy(mod_ashs)$p.value[10]`), suggesting that the observed relationship is does not show differences in the rate of hippocampal atrophy over time
 
 ## Post Hoc analysis
 
@@ -758,8 +776,37 @@ post_hoc_data<-data_cog_long%>%
 
 ```{r, eval = F, include=F}
 library(mediation)
+
+
+#all
+test_med_all <- lm(Z_PACC_diff ~ A  + age_v1 + APOE_binary + education + cog_diff, 
+                     data = data_all[data_all$parous_group=="2+",])
+summary(test_med_all)
+
+
+model_mediator_all <- lm(scale_vol_HIPP ~ A + age_v1 + APOE_binary + education + scale_vol_tiv, 
+                     data = data_all)
+
+# Model 2: Effect of parity and HV on cognition
+model_outcome_all <- lm(Z_PACC_diff ~  scale_vol_HIPP + A + scale_vol_tiv+ cog_diff + age_v1 + APOE_binary + education, 
+                    data = data_all)
+
+# Check your models
+summary(model_mediator_all)
+summary(model_outcome_all)
 set.seed(123)
 
+mediation_results <- mediate(model_mediator_all,    # Mediator model
+                              model_outcome_all,     # Outcome model
+                              treat = "A",  # Independent variable
+                              mediator = "scale_vol_HIPP",   # Mediator
+                              boot = TRUE,       # Use bootstrapping
+                              sims = 5000) 
+
+summary(mediation_results)
+
+
+#multiparous
 test_med <- lm(Z_PACC_diff ~ A  + age_v1 + APOE_binary + education + cog_diff, 
                      data = data_all[data_all$parous_group=="2+",])
 summary(test_med)
@@ -817,139 +864,98 @@ To conclude, this research demonstrated that previous parity influences postmeno
 ## Regression tables
 
 ```{r parity_amyloid, echo=F, warning=F}
-huxreg(fit_amyloid, bold_signif = 0.05, outer_borders =1, stars = c("†" = 0.1, "*" = 0.05, "**" = 0.01, "***" = 0.001), coefs = c("Intercept" = "(Intercept)",
-                 "Parity" = "kids_total",
-                 "APOE_E4 Carrier" = "APOE_binary1",
-                 "Age baseline" = "age_v1",
-                 "Education" = "education"))%>%
-  set_caption("Linear regression of Parity (exposure) on Amyloid (outcome) at baseline") %>% 
-  set_caption_pos("top")
 
-summary(fit_amyloid)
+tbl_regression(fit_amyloid, label= list(kids_total = "Parity (continous)", age_v1= "Age", APOE_binary = "APOE-E4", education = "Education (years of)"), exponentiate = F,
+               include=c(kids_total))%>%
+  modify_header(estimate ~ "**Estimate**", label ~ "**Variables, N = {N}**")
 ```
 
-```{r PACC_lm_simple}
-#| label: tbl-fit_cog_PACC_lm_simple
-#| echo: false
-#| warning: false
+```{r PACC_lm_simple, echo=F, warning=F}
 
-huxreg(fit_cog_PACC_lm_simple, 
-       bold_signif = 0.05, 
-       outer_borders = 1, 
-       stars = c("†" = 0.1, "*" = 0.05, "**" = 0.01, "***" = 0.001), 
-       coefs = c("Intercept" = "(Intercept)",
-                 "Parity" = "kids_total",
-                 "Aβ+" = "A1",
-                 "APOE_E4 Carrier" = "APOE_binary1",
-                 "Age baseline" = "age_v1",
-                 "Education" = "education")) %>%
-  set_caption("Linear regression of Parity on PACC score (outcome) at baseline")
-```
+tbl_PACC_lm1<-tbl_regression(fit_cog_PACC_lm_simple, label= list(kids_total = "Parity (continous)", age_v1= "Age", APOE_binary = "APOE-E4", education = "Education (years of)", A= "Aβ+"), show_single_row = c( A), exponentiate = F,
+               estimate_fun = ~ style_number(.x, digits = 4),
+               include = c(kids_total, A))%>%
+  modify_header(estimate ~ "**Estimate**", label ~ "**Variables, N = {N}**")
 
-```{r PACC_lm_int, echo=F, warning=F}
-huxreg(fit_cog_PACC_lm, bold_signif = 0.05, outer_borders =1, stars = c("†" = 0.1, "*" = 0.05, "**" = 0.01, "***" = 0.001), coefs = c("Intercept" = "(Intercept)",
-                 "Parity" = "kids_total",
-                 "Aβ+" = "A1",
-                 "APOE_E4 Carrier" = "APOE_binary1",
-                 "Age baseline" = "age_v1",
-                 "Parity*Aβ"="kids_total:A1",
-                 "Education" = "education"))%>%
-  set_caption("Linear regression of Parity and Aβ load (exposures) on PACC score (outcome) at baseline") %>% 
-  set_caption_pos("top")
+
+tbl_PACC_lm2<-tbl_regression(fit_cog_PACC_lm, label= list(kids_total = "Parity (continous)", age_v1= "Age", APOE_binary = "APOE-E4", education = "Education (years of)", A= "Aβ+"), show_single_row = c( A, `kids_total:A`), exponentiate = F,
+               estimate_fun = ~ style_number(.x, digits = 4),
+               include= c(kids_total, A, `kids_total:A`))%>%
+  modify_header(estimate ~ "**Estimate**", label ~ "**Variables, N = {N}**")
+
+tbl_merge(
+  list(tbl_PACC_lm1, tbl_PACC_lm2),
+  tab_spanner = c("**PACC ~ Parity + Aβ**", "**PACC ~ Parity*Aβ**")
+)
 ```
 
 ```{r PACC_long_simple, echo=F, warning=F}
-huxreg(fit_cog_PACC_simple, bold_signif = 0.05, outer_borders =1, stars = c("†" = 0.1, "*" = 0.05, "**" = 0.01, "***" = 0.001), coefs = c("Intercept" = "(Intercept)",
-                 "Parity" = "kids_total",
-                 "Aβ+" = "A1",
-                 "APOE_E4 Carrier" = "APOE_binary1",
-                 "Age baseline" = "age_v1",
-                 "Education" = "education",
-                 "Parity:Time" = "kids_total:time_diff"))%>%
-  set_caption("Mixed effect model of Parity and time (exposures) on PACC score (outcome) at baseline and follow-up") %>% 
-  set_caption_pos("top")
+
+tbl_PACC_mem1<-tbl_regression(fit_cog_PACC_simple, label= list(kids_total = "Parity (continous)", age_v1= "Age", APOE_binary = "APOE-E4", education = "Education (years of)", A= "Aβ+", time_diff="Time"), show_single_row = c(A, `kids_total:time_diff`), exponentiate = F,
+               estimate_fun = ~ style_number(.x, digits = 4),
+               include = c(kids_total, A, time_diff, `kids_total:time_diff`))%>%
+  modify_header(estimate ~ "**Estimate**", label ~ "**Variables, N = {N}**")
+
+tbl_PACC_mem2<-tbl_regression(fit_cog_PACC, 
+               label= list(kids_total = "Parity (continous)", age_v1= "Age", APOE_binary = "APOE-E4", education = "Education (years of)", A= "Aβ+", time_diff="Time"), 
+               show_single_row = c( A, `kids_total:time_diff`, `kids_total:A`, `A:time_diff`, `kids_total:A:time_diff`), 
+               exponentiate = F, 
+               include=c(kids_total, A, time_diff, `kids_total:A`, `A:time_diff`, `kids_total:time_diff`, `kids_total:A:time_diff`),
+               estimate_fun = ~ style_number(.x, digits = 4))%>%
+  modify_header(estimate ~ "**Estimate**", label ~ "**Variables, N = {N}**")
+
+tbl_merge(
+  list(tbl_PACC_mem1, tbl_PACC_mem2),
+  tab_spanner = c("**PACC ~ Parity*time + Aβ**", "**PACC ~ Parity`*time*`Aβ**")
+)
 ```
 
-```{r PACC_long_int, echo=F, warning=F}
-huxreg(list("Continuous parity" = fit_cog_PACC, "Parous groups" = fit_cog_PACC_group), bold_signif = 0.05, outer_borders =1, stars = c("†" = 0.1, "*" = 0.05, "**" = 0.01, "***" = 0.001), coefs = c("Intercept" = "(Intercept)",
-                 "Parity" = "kids_total",
-                 "Time" = "time_diff",
-                 "Aβ+" = "A1",
-                 "APOE_E4 Carrier" = "APOE_binary1",
-                 "Age baseline" = "age_v1",
-                 "Parity*Aβ"="kids_total:A1",
-                 "Parity:Time" = "kids_total:time_diff",
-                 "Aβ+:Time" = "A1:time_diff",
-                 "Parity:Aβ+:Time" = "kids_total:A1:time_diff",
-                 "Primiparous" = "parous_group1",
-                 "Multiparous" = "parous_group2+",
-                 "Primiparous:Aβ+" = "parous_group1:A1",
-                 "Multiparous:Aβ+" = "parous_group2+:A1",
-                 "Aβ+:Time" = "A1:time_diff",
-                 "Primiparous:Aβ+:Time" = "parous_group1:A1:time_diff",
-                  "Multiparous:Aβ+:Time" = "parous_group2+:A1:time_diff",
-                 "Education" = "education"))%>%
-  set_caption("Mixed effect model of Parity, Aβ load and time (exposures) on PACC score (outcome) at baseline and follow-up") %>% 
-  set_caption_pos("top")
+
+```{r PACC_long_int_cat, echo=F, warning=F}
+tbl_regression(fit_cog_PACC_group, 
+               label= list(parous_group = "Parity (categorical)", age_v1= "Age", APOE_binary = "APOE-E4", education = "Education (years of)", A= "Aβ+", time_diff="Time"), 
+               show_single_row = c( A, `A:time_diff`), 
+               exponentiate = F, 
+               include=c(parous_group, A, time_diff, `A:time_diff`, `parous_group:A`, `parous_group:time_diff`, `parous_group:A:time_diff`),
+               estimate_fun = ~ style_number(.x, digits = 4))%>%
+  modify_header(estimate ~ "**Estimate**", label ~ "**Variables, N = {N}**")
+
 ```
 
 ```{r hippo_lm_simple, echo=F, warning=F}
-huxreg(mod_ashs_lm_simple, bold_signif = 0.05, outer_borders =1, stars = c("†" = 0.1, "*" = 0.05, "**" = 0.01, "***" = 0.001), coefs = c("Intercept" = "(Intercept)",
-                 "Parity" = "kids_total",
-                 "Aβ+" = "A1",
-                 "APOE_E4 Carrier" = "APOE_binary1",
-                 "Age baseline" = "age_v1",
-                 "Education" = "education"))%>%
-  set_caption("Linear regression of Parity (exposure) on HV (outcome) at baseline") %>% 
-  set_caption_pos("top")
+
+tbl_hv_lm1<-tbl_regression(mod_ashs_lm_simple, label= list(kids_total = "Parity (continuous)", age_v1= "Age", APOE_binary = "APOE-E4", education = "Education (years of)", A= "Aβ+", time_diff="Time", `scale(vol_tiv)` = "TIV"), show_single_row = c(A), exponentiate = F, include=c(kids_total, A))%>%
+  modify_header(estimate ~ "**Estimate**", label ~ "**Variables, N = {N}**")
+
+
+tbl_hv_lm2<-tbl_regression(mod_ashs_lm, label= list(kids_total = "Parity (continuous)", age_v1= "Age", APOE_binary = "APOE-E4", education = "Education (years of)", A= "Aβ+", time_diff="Time", `scale(vol_tiv)` = "TIV"), show_single_row = c( A, `kids_total:A`), exponentiate = F, include=c(kids_total, A, `kids_total:A`))%>%
+  modify_header(estimate ~ "**Estimate**", label ~ "**Variables, N = {N}**")
+
+tbl_merge(
+  list(tbl_hv_lm1, tbl_hv_lm2),
+  tab_spanner = c("**HV ~ Parity + Aβ**", "**HV ~ Parity*Aβ**")
+)
 ```
 
+
 ```{r hippo_lm_int, echo=F, warning=F}
-huxreg(list("Continuous parity" = mod_ashs_lm, "Parous groups" = mod_ashs_lm_group), bold_signif = 0.05, outer_borders =1, stars = c("†" = 0.1, "*" = 0.05, "**" = 0.01, "***" = 0.001), coefs = c("Intercept" = "(Intercept)",
-                 "Parity" = "kids_total",
-                 "Primiparous" = "parous_group1",
-                 "Multiparous" = "parous_group2+",
-                 "Aβ+" = "A1",
-                 "APOE_E4 Carrier" = "APOE_binary1",
-                 "Age baseline" = "age_v1",
-                 "Parity*Aβ"="kids_total:A1",
-                 "Primiparous:Aβ+" = "parous_group1:A1",
-                 "Multiparous:Aβ+" = "parous_group2+:A1",
-                 "Education" = "education"))%>%
-  set_caption("Linear regression of Parity and Aβ load (exposures) on HV (outcome) at baseline") %>% 
-  set_caption_pos("top")
+tbl_regression(mod_ashs_lm_group, label= list(parous_group = "Parity (categorical)", age_v1= "Age", APOE_binary = "APOE-E4", education = "Education (years of)", A= "Aβ+", time_diff="Time", `scale(vol_tiv)` = "TIV"), show_single_row = c(A), exponentiate = F, include=c(parous_group, A, `parous_group:A`))%>%
+  modify_header(estimate ~ "**Estimate**", label ~ "**Variables, N = {N}**")
 ```
 
 ```{r hippo_long_simple, echo=F, warning=F}
-huxreg(mod_ashs_simple, bold_signif = 0.05, outer_borders =1, stars = c("†" = 0.1, "*" = 0.05, "**" = 0.01, "***" = 0.001), coefs = c("Intercept" = "(Intercept)",
-                 "Parity" = "kids_total",
-                 "Aβ+" = "A1",
-                 "APOE_E4 Carrier" = "APOE_binary1",
-                 "Age baseline" = "age_v1",
-                 "Time"= "diff_mri",
-                 "TIV" = "scale(vol_tiv)",
-                 "Parity:Time"="kids_total:diff_mri",
-                 "Education" = "education"))%>%
-  set_caption("Mixed effect model of Parity and time (exposures) on HV (outcome) at baseline and follow-up") %>% 
-  set_caption_pos("top")
-summary(mod_ashs_simple)
-```
 
-```{r hippo_long_int, echo=F, warning=F}
-huxreg(mod_ashs, bold_signif = 0.05, outer_borders =1, stars = c("†" = 0.1, "*" = 0.05, "**" = 0.01, "***" = 0.001), coefs = c("Intercept" = "(Intercept)",
-                 "Parity" = "kids_total",
-                 "Aβ+" = "A1",
-                 "APOE_E4 Carrier" = "APOE_binary1",
-                 "Age baseline" = "age_v1",
-                 "Time"= "diff_mri",
-                 "TIV" = "scale(vol_tiv)",
-                 "Aβ+:Time"="diff_mri:A1",
-                 "Parity:Time"="kids_total:diff_mri",
-                 "Parity*Aβ"="kids_total:A1",
-                 "Parity:Aβ+:Time" = "kids_total:diff_mri:A1",
-                 "Education" = "education"))%>%
-  set_caption("Mixed effect model of Parity, Aβ load and time (exposures) on HV (outcome) at baseline and follow-up") %>% 
-  set_caption_pos("top")
+tbl_hv_lmer1<-tbl_regression(mod_ashs_simple, label= list(kids_total = "Parity (continous)", age_v1= "Age", APOE_binary = "APOE-E4", education = "Education (years of)", A= "Aβ+", diff_mri="Time", `scale(vol_tiv)` = "TIV"), show_single_row = c(A, `kids_total:diff_mri`), exponentiate = F, include= c(kids_total, A, diff_mri, `kids_total:diff_mri`))%>%
+  modify_header(estimate ~ "**Estimate**", label ~ "**Variables, N = {N}**")
+
+
+tbl_hv_lmer2<-tbl_regression(mod_ashs, label= list(kids_total = "Parity (continous)", age_v1= "Age", APOE_binary = "APOE-E4", education = "Education (years of)", A= "Aβ+", diff_mri="Time", `scale(vol_tiv)` = "TIV"), show_single_row = c(A, `kids_total:diff_mri`, `kids_total:A`, `diff_mri:A`, `kids_total:diff_mri:A`), exponentiate = F, include= c(kids_total, A, diff_mri, `kids_total:diff_mri`, `kids_total:A`, `diff_mri:A`, `kids_total:diff_mri:A`))%>%
+  modify_header(estimate ~ "**Estimate**", label ~ "**Variables, N = {N}**")
+
+tbl_merge(
+  list(tbl_hv_lmer1, tbl_hv_lmer2),
+  tab_spanner = c("**HV ~ Parity*time + Aβ**", "**HV ~ Parity`*time*`Aβ**")
+)
 
 ```
 
@@ -1030,10 +1036,10 @@ DG/SUB
 
 # References
 
-```{r, include =F, eval=F}
+
 Third, both could interact by modifying cardiovascular risk. Cardiovascular risk is highly associated with all-cause dementia and AD risk @farnsworthvoncederwald2022, and pregnancy requires substantial vasculature changes for the well-being of the new foetus, in turn leading to significant increases in plasma volume and cardiac output @iacobaeus2017. To accommodate these changes, vascular resistance decreases through outward vessel hypertrophy. Although these changes are mostly seen in the uterine vasculature, these changes are, to some extent, pervasive to the entire vascular system @boeldt2017. Importantly, Aβ peptides can deposit on brain blood vessels, interfering with its integrity and function. Therefore, previous parity could modify participants' vascular system, which in turn could modulate the impact of Aβ on vasculature, or resilience to Aβ accumulation, and modify AD risk and trajectory. Given that microglial activation is strongly related to cerebrovascular injury, but also Aβ accumulation, it is possible that vascular and immune pathways interact with each other as well. Unfortunately, the effect of previous normotensive pregnancy on the vasculature system in older females is largely unknown, meaning further work is needed to characterise their vascular impact on postmenopausal individuals.
 
-```
+
 
 ```{r, include=F, eval =F}
 model_hv_A0 <- lm(vol_HIPP ~ age_v1 + education + vol_tiv + APOE_binary, 
@@ -1258,3 +1264,8 @@ test<-lm(followup~  kids_total*A  +APOE_binary + education + scale(vol_tiv) , da
 
 summary(test)
 ```
+
+While it is widely agreed upon that the gestational period is associated with a sharp increase in sex steroids, notably E2 and P4, studies reporting this effect show staggering variability in measurement [24]. And an even greater uncertainty remains in the characterization of hormonal levels in the post-partum period and beyond. Some studies find that parous women show lower estrogen levels than nulliparous women [26] [27]. Still, this difference might only be evident 3 years after the last birth [28] and may depend on participants’ menstrual cycle at the time of measurement [25] and ethnicity [29]. Additionally, in rats, multiparity is associated with reduced sensitivity to estrogens compared with nulliparous rats [30]. Therefore, although previous parity might be associated with higher total lifetime exposure to estrogens, it might also be associated with lower circulating estrogen levels and lower sensitivity to it. Additionally, the menopausal transition adds another layer of complexity to interpretation, since it is unclear if the sharp decline in sex steroids correlates with premenopausal levels. Following this, although sex steroids certainly play a role in the interaction seen in our results, it is difficult to establish a direction of effect with certainty due to the remaining gaps in knowledge on the impact of parity on hormonal levels, especially in postmenopausal states.
+
+Another theory is that parity interacts with Aβ status through immune changes induced by pregnancy. Parity affects the immune system beyond birth, as evidenced by the presence of fetal cells in the mother’s tissue postpartum [31]. The long-term consequences of these immune changes remain largely unknown, with current evidence limited to a few epidemiological studies examining the effect of parity on autoimmune disease [32]. A key theory behind sex differences in AD trajectory concerns immune differences and their effects on the inflammatory cascade that characterizes Aβ accumulation [33]. A postmortem study on 183 participants, of which two-thirds were clinically diagnosed with MCI or dementia before death, found that the percentage of Aβ accumulation mediated by microglial activation is nearly 3 times as high in females compared to males [34]. In that sense, gestational-related immune changes could contribute to the observed sex differences in immunological pathways in AD, perhaps through microglial effects on Aβ accumulation. Additionally, one study that included 93 postmenopausal women spanning the full range of possible CDR scores found that the cumulative number of first trimesters, but not third trimesters, was associated with reduced AD risk [35]. Since major immune changes during pregnancy happen during the first trimester, this further establishes a link between pregnancy-related immune changes and AD risk.
+
