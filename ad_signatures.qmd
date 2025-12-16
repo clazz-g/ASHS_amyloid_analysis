@@ -451,8 +451,16 @@ fit_cog_PACC<-lmer(Z_PACC ~ kids_total*A*time_diff_years +age_v1 + APOE_binary +
 summary(fit_cog_PACC)
 
 
+
+
 fit_cog_PACC_group<-lmer(Z_PACC ~ parous_group*A*time_diff_years +age_v1 + APOE_binary + education +(1 | subject), data_cog_long[data_cog_long$sex==2,])
 summary(fit_cog_PACC_group)
+
+data_cog_long<-data_cog_long%>%
+  mutate(kids_dicho=factor(kids_dicho))
+
+
+
 
 trend_cog<-emtrends(fit_cog_PACC_group, ~ A * parous_group, var = "time_diff_years")
 pairs(trend_cog, by= "parous_group", adjust = "tukey")
@@ -475,7 +483,17 @@ emm_df <- as.data.frame(emm_grid)
 slopes <- emtrends(fit_cog_PACC, ~ kids_total * A, var = "time_diff_years", data= data_cog_long, at = list(kids_total = c(0, 1, 2, 3, 4)))
 slopes_df <- as.data.frame(slopes)
 
-cog_p1<- ggplot(slopes_df, aes(x = kids_total, y = time_diff_years.trend, 
+individual_slopes <- data_cog_long %>%
+  drop_na(A)%>%
+  filter(sex==2)%>%
+  mutate(kids_total = ifelse(kids_total==5, 4, kids_total))%>%
+  group_by(subject, kids_total, A) %>%
+  do(model = lm(Z_PACC ~ time_diff_years, data = .)) %>%
+  mutate(slope = coef(model)[2]) %>%
+  select(-model) %>%
+  ungroup()
+
+cog_p1<-ggplot(slopes_df, aes(x = kids_total, y = time_diff_years.trend, 
                             fill = as.factor(A))) +
   geom_col(position = "dodge", alpha = 0.8, color = "black", size = 0.3) +
   geom_errorbar(aes(ymin = time_diff_years.trend - SE, ymax = time_diff_years.trend + SE),
@@ -493,7 +511,13 @@ cog_p1<- ggplot(slopes_df, aes(x = kids_total, y = time_diff_years.trend,
                               Z_PACC = Inf, 
                               label = "p= 0.033*"),
             aes(x = time_diff_years, y = Z_PACC, label = label),
-            size = 4, vjust = 1.5, hjust = 1.2, inherit.aes = FALSE)
+            size = 4, vjust = 1.5, hjust = 1.2, inherit.aes = FALSE)+
+  geom_point(data = individual_slopes, 
+             aes(x = kids_total, y = slope, fill = A),
+             position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.9),
+             alpha = 0.4, size = 1.9, shape = 21)
+
+
 ```
 
 ```{r cog_plot_emmeans, echo=F, warning=F}
@@ -568,8 +592,10 @@ cog_p2<-data_cog_long %>%
 
 ```{r cog_plot_all, echo=F, warning=F}
 
-cog_p1/cog_p2+
+figure1<-cog_p1/cog_p2+
   plot_annotation(tag_levels = 'A')
+
+ggsave("figure1.jpeg", dpi=500)
 
 ```
 
@@ -581,6 +607,8 @@ Reproducing the analysis across categorical parity groups (nulliparous, primipar
 
 mod_ashs<-lmer(vol_HIPP_cm ~  kids_total*diff_mri*A +age_v1  + vol_tiv_cm + education + APOE_binary +(1|subject), data = data_ashs[data_ashs$sex==2 ,])
 summary(mod_ashs)
+
+
 
 mod_ashs_group<-lmer(vol_HIPP_cm ~  parous_group*diff_mri*A +age_v1  + vol_tiv_cm + education + APOE_binary +(1|subject), data = data_ashs[data_ashs$sex==2 ,])
 summary(mod_ashs_group)
@@ -624,10 +652,9 @@ hippo_p1<-data_ashs %>%
          combined_group = paste0(A, ".", kids_total)) %>%
   ggplot(aes(x = kids_total, y = vol_HIPP_cm, 
              group = combined_group, 
-             colour = combined_group, 
              fill = combined_group)) +
-  stat_summary(fun.data = quantiles_95, geom="boxplot", alpha=0.5, position=position_dodge(width = 0.9) ,width= 0.8, lwd=0.9)+
-  geom_point(alpha = 0.5, position = position_dodge(width = 0.9), size = 2) +
+  stat_summary(fun.data = quantiles_95, geom="boxplot", alpha=0.7, position=position_dodge(width = 0.9) ,width= 0.8, lwd=0.5)+
+  geom_point(alpha = 0.5, position = position_jitterdodge(jitter.width = 0.1, dodge.width = 0.9), size = 1.9, shape = 21) +
   th +
   labs(x = "Number of childbirths", 
        y = "Total hippocampal volume (cm3)", 
@@ -647,9 +674,7 @@ hippo_p1<-data_ashs %>%
 preds_hip_lm <- ggpredict(mod_ashs_group, terms = c("parous_group", "A"))%>%
   as.data.frame()
 
-hippo_p2<-
-  
-  preds_hip_lm%>%
+hippo_p2<-preds_hip_lm%>%
   mutate(x=factor(x, levels = c("0", "1", "2+"), labels = c("Nulliparous", "Primiparous", "Multiparous")),
          group= factor(group, levels = c("0", "1"), labels= c("Aβ-", "Aβ+")))%>%
   ggplot(aes(x= x, y=predicted, group=group, colour = group))+
@@ -663,20 +688,22 @@ hippo_p2<-
                      labels = c("Aβ-", "Aβ+"))+
   geom_signif(
     annotation = "0.004**",  
-    y_position = max(preds_hip_lm$conf.high) ,
+    y_position = max(preds_hip_lm$conf.high)-0.005,
     xmin = 2.8,
     xmax = 3.2,
     tip_length = 0.02,
     color = "black",
-    size= 1.2,
+    size= 1,
     textsize = 4
   )
 ```
 
 ```{r hippo_plot_all, echo=F, warning=F}
 
-hippo_p1/hippo_p2+
+figure2<-hippo_p1/hippo_p2+
   plot_annotation(tag_levels = 'A')
+
+ggsave("figure2.jpeg", dpi=500)
 ```
 
 ## Post Hoc analysis
@@ -798,10 +825,32 @@ To conclude, this research demonstrated that parity is related to postmenopausal
 
 # Appendix
 
+## dichotomous pregnancy PACC
+```{r, include=F}
+fit_cog_PACC_dicho<-lmer(Z_PACC ~ kids_dicho*A*time_diff_years +age_v1 + APOE_binary + education +(1 | subject), data_cog_long[data_cog_long$sex==2,])
+summary(fit_cog_PACC_dicho)
+
+trend_cog_dicho<-emtrends(fit_cog_PACC_dicho, ~ A * kids_dicho, var = "time_diff_years")
+pairs(trend_cog_dicho, by= "kids_dicho", adjust = "tukey")
+
+```
+
+## dichotomous pregnancy HV
+```{r, include=FALSE}
+mod_ashs_dicho<-lmer(vol_HIPP_cm ~  kids_dicho*diff_mri*A +age_v1  + vol_tiv_cm + education + APOE_binary +(1|subject), data = data_ashs[data_ashs$sex==2 ,])
+summary(mod_ashs_dicho)
+
+emm_dicho_A <- emmeans(mod_ashs_dicho, 
+                        specs = ~ kids_dicho * A,
+                        data = data_ashs[data_ashs$sex==2,])
+pairs(emm_dicho_A, by= "kids_dicho")
+```
+
+
 ## Regression tables
 
 
-```{r}
+```{r, echo=F, warning=F}
 
 
 tbl_regression(fit_cog_ashs, label= list(kids_total = "Parity (continous)", age_v1= "Age", APOE_binary = "APOE-E4", education = "Education (years of)", diff_mri = "Time", vol_HIPP_cm = "HV"), exponentiate = F,
@@ -813,7 +862,7 @@ tbl_regression(fit_cog_ashs, label= list(kids_total = "Parity (continous)", age_
 
 ```{r parity_amyloid, echo=F, warning=F}
 
-tbl_regression(fit_amyloid, label= list(kids_total = "Parity (continous)", age_v1= "Age", APOE_binary = "APOE-E4", education = "Education (years of)"), exponentiate = F,
+tbl_regression(fit_amyloid, label= list(kids_total = "Parity (continous)", age_v1= "Age", APOE_binary = "APOE-E4", education = "Education (years of)"), exponentiate = T,
                include=c(kids_total))%>%
   modify_header(estimate ~ "**Estimate**", label ~ "**Variables, N = {N}**")
 ```
